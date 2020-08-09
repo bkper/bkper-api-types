@@ -268,6 +268,32 @@ declare namespace bkper {
         cursor?: string;
         items?: Event[];
     }
+    export interface File {
+        /**
+         * The id of agent that created the resource
+         */
+        agentId?: string;
+        /**
+         * The file content type
+         */
+        contentType?: string;
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        /**
+         * The unique id that identifies the file in the book
+         */
+        id?: string;
+        /**
+         * The file name
+         */
+        name?: string;
+        /**
+         * The file serving url
+         */
+        url?: string;
+    }
     export interface Group {
         /**
          * The id of agent that created the resource
@@ -404,9 +430,9 @@ declare namespace bkper {
          */
         draft?: boolean;
         /**
-         * The ids of files attached to the transaction
+         * The files attached to the transaction
          */
-        files?: string[];
+        files?: File[];
         /**
          * The unique id that identifies the transaction in the book
          */
@@ -465,6 +491,7 @@ declare namespace bkper {
          * The affected accounts
          */
         accounts?: Account[];
+        agentId?: string;
         transaction?: Transaction;
     }
     export interface User {
