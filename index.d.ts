@@ -68,30 +68,10 @@ declare namespace bkper {
         uncheckedPeriodBalance?: string;
     }
     export interface AccountList {
+        /**
+         * List items
+         */
         items?: Account[];
-    }
-    export interface AccountSave {
-        /**
-         * The ids of groups of the account
-         */
-        groups?: string[];
-        /**
-         * The name of the Account
-         */
-        name?: string;
-        /**
-         * The key/value custom properties of the Account
-         */
-        properties?: {
-            [name: string]: string;
-        };
-        /**
-         * Types: ASSET, LIABILITY, INCOMING, OUTGOING. Default to ASSET if none indentified
-         */
-        type?: string;
-    }
-    export interface AccountSaveBatch {
-        items?: AccountSave[];
     }
     export interface Agent {
         /**
@@ -199,6 +179,9 @@ declare namespace bkper {
         timeZoneOffset?: number; // int32
     }
     export interface BookList {
+        /**
+         * List items
+         */
         items?: Book[];
     }
     export interface Collection {
@@ -266,6 +249,9 @@ declare namespace bkper {
          * The cursor, for pagination
          */
         cursor?: string;
+        /**
+         * List items
+         */
         items?: Event[];
     }
     export interface File {
@@ -336,22 +322,10 @@ declare namespace bkper {
         uncheckedPeriodBalance?: string;
     }
     export interface GroupList {
+        /**
+         * List items
+         */
         items?: Group[];
-    }
-    export interface GroupSave {
-        /**
-         * The name of the Group
-         */
-        name?: string;
-        /**
-         * The key/value custom properties of the Group
-         */
-        properties?: {
-            [name: string]: string;
-        };
-    }
-    export interface GroupSaveBatch {
-        items?: GroupSave[];
     }
     export interface Query {
         /**
@@ -376,6 +350,9 @@ declare namespace bkper {
         title?: string;
     }
     export interface QueryList {
+        /**
+         * List items
+         */
         items?: Query[];
     }
     export interface TagBalances {
@@ -438,6 +415,10 @@ declare namespace bkper {
          */
         id?: string;
         /**
+         * The transaction remote ids, to avoid duplication
+         */
+        remoteIds?: string[];
+        /**
          * The transaction #hashtags
          */
         tags?: string[];
@@ -450,31 +431,6 @@ declare namespace bkper {
          */
         urls?: string[];
     }
-    export interface TransactionDraft {
-        /**
-         * Optional file data Base64 encoded
-         */
-        file?: string;
-        /**
-         * Optional file name
-         */
-        filename?: string;
-        /**
-         * Optional id to avoid duplication
-         */
-        id?: string;
-        /**
-         * Optional file mime type
-         */
-        mimeType?: string;
-        /**
-         * The transaction description
-         */
-        text?: string;
-    }
-    export interface TransactionDraftSaveBatch {
-        items?: TransactionDraft[];
-    }
     export interface TransactionList {
         /**
          * The account id when filtering by a single account. E.g. account='Bank'
@@ -484,6 +440,9 @@ declare namespace bkper {
          * The cursor, for pagination
          */
         cursor?: string;
+        /**
+         * List items
+         */
         items?: Transaction[];
     }
     export interface TransactionOperation {
@@ -512,10 +471,10 @@ declare namespace bkper {
 declare namespace Paths {
     namespace BkperV3CreateAccount {
         export interface BodyParameters {
-            AccountSave: Parameters.AccountSave;
+            Account: Parameters.Account;
         }
         namespace Parameters {
-            export type AccountSave = bkper.AccountSave;
+            export type Account = bkper.Account;
         }
         namespace Responses {
             export type $200 = bkper.Account;
@@ -523,10 +482,10 @@ declare namespace Paths {
     }
     namespace BkperV3CreateAccountsBatch {
         export interface BodyParameters {
-            AccountSaveBatch: Parameters.AccountSaveBatch;
+            AccountList: Parameters.AccountList;
         }
         namespace Parameters {
-            export type AccountSaveBatch = bkper.AccountSaveBatch;
+            export type AccountList = bkper.AccountList;
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
@@ -534,21 +493,21 @@ declare namespace Paths {
     }
     namespace BkperV3CreateGroupsBatch {
         export interface BodyParameters {
-            GroupSaveBatch: Parameters.GroupSaveBatch;
+            GroupList: Parameters.GroupList;
         }
         namespace Parameters {
-            export type GroupSaveBatch = bkper.GroupSaveBatch;
+            export type GroupList = bkper.GroupList;
         }
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV3CreateTransactionDraft {
+    namespace BkperV3CreateTransaction {
         export interface BodyParameters {
-            TransactionDraft: Parameters.TransactionDraft;
+            Transaction: Parameters.Transaction;
         }
         namespace Parameters {
-            export type TransactionDraft = bkper.TransactionDraft;
+            export type Transaction = bkper.Transaction;
         }
         namespace Responses {
             export type $200 = bkper.Transaction;
@@ -556,10 +515,10 @@ declare namespace Paths {
     }
     namespace BkperV3CreateTransactionsBatch {
         export interface BodyParameters {
-            TransactionDraftSaveBatch: Parameters.TransactionDraftSaveBatch;
+            TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
-            export type TransactionDraftSaveBatch = bkper.TransactionDraftSaveBatch;
+            export type TransactionList = bkper.TransactionList;
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
@@ -597,10 +556,10 @@ declare namespace Paths {
     }
     namespace BkperV3UpdateTransaction {
         export interface BodyParameters {
-            TransactionDraft: Parameters.TransactionDraft;
+            Transaction: Parameters.Transaction;
         }
         namespace Parameters {
-            export type TransactionDraft = bkper.TransactionDraft;
+            export type Transaction = bkper.Transaction;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
