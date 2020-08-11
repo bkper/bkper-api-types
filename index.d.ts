@@ -403,10 +403,6 @@ declare namespace bkper {
          */
         description?: string;
         /**
-         * Tell if the transaction is a draft, not yet posted to accounts
-         */
-        draft?: boolean;
-        /**
          * The files attached to the transaction
          */
         files?: File[];
@@ -414,6 +410,10 @@ declare namespace bkper {
          * The unique id that identifies the transaction in the book
          */
         id?: string;
+        /**
+         * Tell if the transaction is already posted on accounts, otherwise is a draft
+         */
+        posted?: boolean;
         /**
          * The transaction remote ids, to avoid duplication
          */
@@ -469,6 +469,17 @@ declare namespace bkper {
     }
 }
 declare namespace Paths {
+    namespace BkperV3CheckTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
     namespace BkperV3CreateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
@@ -552,6 +563,39 @@ declare namespace Paths {
     namespace BkperV3QueryBalances {
         namespace Responses {
             export type $200 = bkper.Balances;
+        }
+    }
+    namespace BkperV3TrashTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV3UncheckTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV3UntrashTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
         }
     }
     namespace BkperV3UpdateTransaction {
