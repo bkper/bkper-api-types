@@ -535,6 +535,17 @@ declare namespace Paths {
             export type $200 = bkper.TransactionList;
         }
     }
+    namespace BkperV3DeleteTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
     namespace BkperV3GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
@@ -565,7 +576,7 @@ declare namespace Paths {
             export type $200 = bkper.Balances;
         }
     }
-    namespace BkperV3TrashTransaction {
+    namespace BkperV3RestoreTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -577,17 +588,6 @@ declare namespace Paths {
         }
     }
     namespace BkperV3UncheckTransaction {
-        export interface BodyParameters {
-            Transaction: Parameters.Transaction;
-        }
-        namespace Parameters {
-            export type Transaction = bkper.Transaction;
-        }
-        namespace Responses {
-            export type $200 = bkper.TransactionOperation;
-        }
-    }
-    namespace BkperV3UntrashTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
