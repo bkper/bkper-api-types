@@ -232,7 +232,7 @@ declare namespace bkper {
         /**
          * The event type of the Event
          */
-        type?: "FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_POSTED" | "TRANSACTION_EDITED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_DELETED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_DELETED" | "ACCOUNT_UPDATED" | "QUERY_CREATED" | "QUERY_DELETED" | "QUERY_UPDATED" | "GROUP_CREATED" | "GROUP_DELETED" | "GROUP_UPDATED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_REMOVED" | "COLLABORATOR_UPDATED" | "BOOK_DELETED" | "BOOK_UPDATED";
+        type?: "FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "BOOK_UPDATED" | "BOOK_DELETED";
         user?: User;
     }
     export interface EventData {
@@ -450,7 +450,6 @@ declare namespace bkper {
          * The affected accounts
          */
         accounts?: Account[];
-        agentId?: string;
         transaction?: Transaction;
     }
     export interface User {
@@ -502,6 +501,17 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
+    namespace BkperV3CreateGroup {
+        export interface BodyParameters {
+            Group: Parameters.Group;
+        }
+        namespace Parameters {
+            export type Group = bkper.Group;
+        }
+        namespace Responses {
+            export type $200 = bkper.Group;
+        }
+    }
     namespace BkperV3CreateGroupsBatch {
         export interface BodyParameters {
             GroupList: Parameters.GroupList;
@@ -521,7 +531,7 @@ declare namespace Paths {
             export type Transaction = bkper.Transaction;
         }
         namespace Responses {
-            export type $200 = bkper.Transaction;
+            export type $200 = bkper.TransactionOperation;
         }
     }
     namespace BkperV3CreateTransactionsBatch {
@@ -533,6 +543,16 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
+        }
+    }
+    namespace BkperV3DeleteAccount {
+        namespace Responses {
+            export type $200 = bkper.Account;
+        }
+    }
+    namespace BkperV3DeleteGroup {
+        namespace Responses {
+            export type $200 = bkper.Group;
         }
     }
     namespace BkperV3GetBook {
@@ -563,6 +583,17 @@ declare namespace Paths {
     namespace BkperV3ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
+        }
+    }
+    namespace BkperV3PostTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
         }
     }
     namespace BkperV3QueryBalances {
@@ -601,6 +632,28 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV3UpdateAccount {
+        export interface BodyParameters {
+            Account: Parameters.Account;
+        }
+        namespace Parameters {
+            export type Account = bkper.Account;
+        }
+        namespace Responses {
+            export type $200 = bkper.Account;
+        }
+    }
+    namespace BkperV3UpdateGroup {
+        export interface BodyParameters {
+            Group: Parameters.Group;
+        }
+        namespace Parameters {
+            export type Group = bkper.Group;
+        }
+        namespace Responses {
+            export type $200 = bkper.Group;
         }
     }
     namespace BkperV3UpdateTransaction {
