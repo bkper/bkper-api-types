@@ -29,6 +29,10 @@ declare namespace bkper {
          */
         groups?: string[];
         /**
+         * Tell if the account has transaction posted
+         */
+        hasTransactionPosted?: boolean;
+        /**
          * The unique id that identifies the Account in the Book
          */
         id?: string;
