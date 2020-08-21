@@ -2,6 +2,8 @@
 
 This package contains Typescript definitions for the [Bkper REST API](https://api.bkper.com).
 
+[![npm (scoped)](https://img.shields.io/npm/v/@bkper/bkper-api-types?color=%235889e4)](https://www.npmjs.com/package/@bkper/bkper-api-types)
+
 The types are generated based on the Bkper [Open API spec](https://app.bkper.com/openapi.json) using the [dtsgenerator](https://github.com/horiuchi/dtsgenerator) tool.
 
 More information at the [Bkper Developer Documentation](http://bkper.com/docs/#rest-api)
