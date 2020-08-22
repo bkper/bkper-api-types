@@ -1,6 +1,6 @@
 # Summary
 
-This package contains Typescript definitions for the [Bkper REST API](https://api.bkper.com).
+This package contains Typescript definitions for the [Bkper REST API](https://bkper.com/docs/#rest-api).
 
 [![npm (scoped)](https://img.shields.io/npm/v/@bkper/bkper-api-types?color=%235889e4)](https://www.npmjs.com/package/@bkper/bkper-api-types)
 
