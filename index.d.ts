@@ -114,7 +114,6 @@ declare namespace bkper {
         periodicity?: "DAILY" | "MONTHLY" | "YEARLY";
         previousRange?: string;
         range?: string;
-        tagBalances?: TagBalances[];
         totalRemovedBalances?: number; // int32
     }
     export interface Book {
@@ -234,7 +233,7 @@ declare namespace bkper {
          */
         resource?: string;
         /**
-         * The event type of the Event
+         * The type of the Event
          */
         type?: "FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "BOOK_UPDATED" | "BOOK_DELETED";
         user?: User;
@@ -359,18 +358,6 @@ declare namespace bkper {
          */
         items?: Query[];
     }
-    export interface TagBalances {
-        balances?: Balance[];
-        checkedCumulativeBalance?: string;
-        checkedPeriodBalance?: string;
-        credit?: boolean;
-        cumulativeBalance?: string;
-        name?: string;
-        periodBalance?: string;
-        permanent?: boolean;
-        uncheckedCumulativeBalance?: string;
-        uncheckedPeriodBalance?: string;
-    }
     export interface Transaction {
         /**
          * The id of agent that created the resource
@@ -418,6 +405,12 @@ declare namespace bkper {
          * Tell if the transaction is already posted on accounts, otherwise is a draft
          */
         posted?: boolean;
+        /**
+         * The key/value custom properties of the Transaction
+         */
+        properties?: {
+            [name: string]: string;
+        };
         /**
          * The transaction remote ids, to avoid duplication
          */
