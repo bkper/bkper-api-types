@@ -293,6 +293,10 @@ declare namespace bkper {
          */
         createdAt?: string;
         /**
+         * Tell if the group is hidden on transactions main menu
+         */
+        hidden?: boolean;
+        /**
          * The unique id that identifies the Group in the Book
          */
         id?: string;
