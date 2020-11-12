@@ -110,7 +110,6 @@ declare namespace bkper {
         balanceCheckedType?: "FULL_BALANCE" | "CHECKED_BALANCE" | "UNCHECKED_BALANCE";
         groupBalances?: GroupBalances[];
         nextRange?: string;
-        onDateMillis?: number; // int64
         periodicity?: "DAILY" | "MONTHLY" | "YEARLY";
         previousRange?: string;
         range?: string;
