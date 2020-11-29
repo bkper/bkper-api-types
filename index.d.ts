@@ -262,6 +262,10 @@ declare namespace bkper {
          */
         agentId?: string;
         /**
+         * The file content Base64 encoded
+         */
+        content?: string;
+        /**
          * The file content type
          */
         contentType?: string;
@@ -277,6 +281,10 @@ declare namespace bkper {
          * The file name
          */
         name?: string;
+        /**
+         * The file size in bytes
+         */
+        size?: number; // int64
         /**
          * The file serving url
          */
@@ -501,6 +509,17 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
+    namespace BkperV3CreateFile {
+        export interface BodyParameters {
+            File: Parameters.File;
+        }
+        namespace Parameters {
+            export type File = bkper.File;
+        }
+        namespace Responses {
+            export type $200 = bkper.File;
+        }
+    }
     namespace BkperV3CreateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
@@ -558,6 +577,11 @@ declare namespace Paths {
     namespace BkperV3GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
+        }
+    }
+    namespace BkperV3GetFile {
+        namespace Responses {
+            export type $200 = bkper.File;
         }
     }
     namespace BkperV3GetTransaction {
