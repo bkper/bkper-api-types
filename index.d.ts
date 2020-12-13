@@ -669,6 +669,17 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
+    namespace BkperV3UpdateBook {
+        export interface BodyParameters {
+            Book: Parameters.Book;
+        }
+        namespace Parameters {
+            export type Book = bkper.Book;
+        }
+        namespace Responses {
+            export type $200 = bkper.Book;
+        }
+    }
     namespace BkperV3UpdateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
