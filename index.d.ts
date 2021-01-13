@@ -93,6 +93,12 @@ declare namespace bkper {
     }
     export interface Any {
     }
+    export interface App {
+        /**
+         * The development webhook url
+         */
+        webhookUrlDev?: string;
+    }
     export interface Balance {
         checkedCumulativeBalance?: string;
         checkedPeriodBalance?: string;
@@ -667,6 +673,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Account;
+        }
+    }
+    namespace BkperV3UpdateApp {
+        export interface BodyParameters {
+            App: Parameters.App;
+        }
+        namespace Parameters {
+            export type App = bkper.App;
+        }
+        namespace Responses {
+            export type $200 = bkper.App;
         }
     }
     namespace BkperV3UpdateBook {
