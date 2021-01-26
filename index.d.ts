@@ -95,9 +95,134 @@ declare namespace bkper {
     }
     export interface App {
         /**
-         * The development webhook url
+         * The Google OAuth Client ID
+         */
+        clientId?: string;
+        /**
+         * The Google OAuth Client Secret
+         */
+        clientSecret?: string;
+        /**
+         * The executable Google Apps Script deployment ID
+         */
+        deploymentId?: string;
+        /**
+         * Tell if the code app is deprecated
+         */
+        deprecated?: boolean;
+        /**
+         * The App description
+         */
+        description?: string;
+        /**
+         * The developer email
+         */
+        developerEmail?: string;
+        /**
+         * Event types the App listen to
+         */
+        events?: ("FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
+        /**
+         * File patters the App handles - wildcard accepted - E.g *.pdf *-bank.csv
+         */
+        filePatterns?: string[];
+        /**
+         * The unique agent id of the App - this can't be changed after created
+         */
+        id?: string;
+        /**
+         * The App logo url
+         */
+        logoUrl?: string;
+        /**
+         * The menu popup window height
+         */
+        menuPopupHeight?: string;
+        /**
+         * The menu popup window width
+         */
+        menuPopupWidth?: string;
+        /**
+         * The contex menu text - default to the App name
+         */
+        menuText?: string;
+        /**
+         * The context menu url
+         */
+        menuUrl?: string;
+        /**
+         * The context menu url in dev mode
+         */
+        menuUrlDev?: string;
+        /**
+         * The App name
+         */
+        name?: string;
+        /**
+         * The owner company logo url
+         */
+        ownerLogoUrl?: string;
+        /**
+         * The owner company name
+         */
+        ownerName?: string;
+        /**
+         * The owner company website url
+         */
+        ownerWebsite?: string;
+        properties?: AppPropertiesScheme;
+        /**
+         * The readme.md file as string
+         */
+        readme?: string;
+        /**
+         * Tell if the code repository is private
+         */
+        repoPrivate?: boolean;
+        /**
+         * The code repository url
+         */
+        repoUrl?: string;
+        /**
+         * The Google OAuth Scopes used by the app
+         */
+        scopes?: string[];
+        /**
+         * The executable Google Apps Script ID
+         */
+        scriptId?: string;
+        /**
+         * The user emails to enable the App while not yet published
+         */
+        userEmails?: string;
+        /**
+         * The Webhook URL to listen for book events
+         */
+        webhookUrl?: string;
+        /**
+         * The Webhook URL to listen for book events in dev mode
          */
         webhookUrlDev?: string;
+        /**
+         * The App website url
+         */
+        website?: string;
+    }
+    export interface AppPropertiesScheme {
+        account?: AppPropertyScheme;
+        book?: AppPropertyScheme;
+        group?: AppPropertyScheme;
+        transaction?: AppPropertyScheme;
+    }
+    export interface AppPropertyScheme {
+        /**
+         * The property keys scheme
+         */
+        keys?: string[];
+        /**
+         * The property values scheme
+         */
+        values?: string[];
     }
     export interface Balance {
         checkedCumulativeBalance?: string;
@@ -513,6 +638,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+        }
+    }
+    namespace BkperV3CreateApp {
+        export interface BodyParameters {
+            App: Parameters.App;
+        }
+        namespace Parameters {
+            export type App = bkper.App;
+        }
+        namespace Responses {
+            export type $200 = bkper.App;
         }
     }
     namespace BkperV3CreateFile {
