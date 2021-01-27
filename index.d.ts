@@ -170,7 +170,7 @@ declare namespace bkper {
          * The owner company website url
          */
         ownerWebsite?: string;
-        properties?: AppPropertiesScheme;
+        propertiesSchema?: AppPropertiesSchema;
         /**
          * The readme.md file as string
          */
@@ -208,13 +208,13 @@ declare namespace bkper {
          */
         website?: string;
     }
-    export interface AppPropertiesScheme {
-        account?: AppPropertyScheme;
-        book?: AppPropertyScheme;
-        group?: AppPropertyScheme;
-        transaction?: AppPropertyScheme;
+    export interface AppPropertiesSchema {
+        account?: AppPropertySchema;
+        book?: AppPropertySchema;
+        group?: AppPropertySchema;
+        transaction?: AppPropertySchema;
     }
-    export interface AppPropertyScheme {
+    export interface AppPropertySchema {
         /**
          * The property keys scheme
          */
