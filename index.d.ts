@@ -216,11 +216,11 @@ declare namespace bkper {
     }
     export interface AppPropertySchema {
         /**
-         * The property keys scheme
+         * The property keys schema
          */
         keys?: string[];
         /**
-         * The property values scheme
+         * The property values schema
          */
         values?: string[];
     }
@@ -749,6 +749,17 @@ declare namespace Paths {
     namespace BkperV3ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
+        }
+    }
+    namespace BkperV3PatchApp {
+        export interface BodyParameters {
+            App: Parameters.App;
+        }
+        namespace Parameters {
+            export type App = bkper.App;
+        }
+        namespace Responses {
+            export type $200 = bkper.App;
         }
     }
     namespace BkperV3PostTransaction {
