@@ -293,6 +293,18 @@ declare namespace bkper {
          */
         ownerName?: string;
         /**
+         * The transactions pagination page size
+         */
+        pageSize?: number; // int32
+        /**
+         * The period slice for balances visualization
+         */
+        period?: "MONTH" | "QUARTER" | "YEAR";
+        /**
+         * The start month when YEAR period set
+         */
+        periodStartMonth?: "JANUARY" | "FEBRUARY" | "MARCH" | "APRIL" | "MAY" | "JUNE" | "JULY" | "AUGUST" | "SEPTEMBER" | "OCTOBER" | "NOVEMBER" | "DECEMBER";
+        /**
          * The Permission the current user has in the Book
          */
         permission?: "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
