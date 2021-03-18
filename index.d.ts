@@ -238,12 +238,13 @@ declare namespace bkper {
     }
     export interface Balances {
         accountBalances?: AccountBalances[];
-        balanceCheckedType?: "FULL_BALANCE" | "CHECKED_BALANCE" | "UNCHECKED_BALANCE";
         groupBalances?: GroupBalances[];
         nextRange?: string;
         periodicity?: "DAILY" | "MONTHLY" | "YEARLY";
         previousRange?: string;
         range?: string;
+        rangeBeginLabel?: string;
+        rangeEndLabel?: string;
         totalRemovedBalances?: number; // int32
     }
     export interface Book {
