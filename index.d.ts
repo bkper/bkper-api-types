@@ -65,8 +65,12 @@ declare namespace bkper {
         checkedPeriodBalance?: string;
         credit?: boolean;
         cumulativeBalance?: string;
+        cumulativeCredit?: string;
+        cumulativeDebit?: string;
         name?: string;
         periodBalance?: string;
+        periodCredit?: string;
+        periodDebit?: string;
         permanent?: boolean;
         uncheckedCumulativeBalance?: string;
         uncheckedPeriodBalance?: string;
@@ -228,10 +232,14 @@ declare namespace bkper {
         checkedCumulativeBalance?: string;
         checkedPeriodBalance?: string;
         cumulativeBalance?: string;
+        cumulativeCredit?: string;
+        cumulativeDebit?: string;
         day?: number; // int32
         fuzzyDate?: number; // int32
         month?: number; // int32
         periodBalance?: string;
+        periodCredit?: string;
+        periodDebit?: string;
         uncheckedCumulativeBalance?: string;
         uncheckedPeriodBalance?: string;
         year?: number; // int32
@@ -473,8 +481,12 @@ declare namespace bkper {
         checkedPeriodBalance?: string;
         credit?: boolean;
         cumulativeBalance?: string;
+        cumulativeCredit?: string;
+        cumulativeDebit?: string;
         name?: string;
         periodBalance?: string;
+        periodCredit?: string;
+        periodDebit?: string;
         permanent?: boolean;
         uncheckedCumulativeBalance?: string;
         uncheckedPeriodBalance?: string;
