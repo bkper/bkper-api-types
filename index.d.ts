@@ -294,6 +294,10 @@ declare namespace bkper {
          */
         lastUpdateMs?: string;
         /**
+         * The book lock date
+         */
+        lockDate?: string;
+        /**
          * The name of the Book
          */
         name?: string;
