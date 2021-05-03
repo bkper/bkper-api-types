@@ -471,10 +471,7 @@ declare namespace bkper {
          * The name of the Group, lowercase, without spaces or special characters
          */
         normalizedName?: string;
-        /**
-         * The id of the parent Group
-         */
-        parentId?: string;
+        parent?: Group;
         /**
          * The key/value custom properties of the Group
          */
