@@ -72,6 +72,9 @@ declare namespace bkper {
         periodCredit?: string;
         periodDebit?: string;
         permanent?: boolean;
+        properties?: {
+            [name: string]: string;
+        };
         uncheckedCumulativeBalance?: string;
         uncheckedPeriodBalance?: string;
     }
@@ -494,6 +497,9 @@ declare namespace bkper {
         periodCredit?: string;
         periodDebit?: string;
         permanent?: boolean;
+        properties?: {
+            [name: string]: string;
+        };
         uncheckedCumulativeBalance?: string;
         uncheckedPeriodBalance?: string;
     }
