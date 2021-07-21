@@ -451,18 +451,6 @@ declare namespace bkper {
          */
         createdAt?: string;
         /**
-         * Tell if the group is credit
-         */
-        credit?: boolean;
-        /**
-         * Tell if the group is has any accounts
-         */
-        hasAccounts?: boolean;
-        /**
-         * Tell if the group is has any children groups
-         */
-        hasGroups?: boolean;
-        /**
          * Tell if the group is hidden on transactions main menu
          */
         hidden?: boolean;
@@ -470,10 +458,6 @@ declare namespace bkper {
          * The unique id that identifies the Group in the Book
          */
         id?: string;
-        /**
-         * Tell if has mixed type of accounts
-         */
-        mixed?: boolean;
         /**
          * The name of the Group
          */
@@ -484,16 +468,11 @@ declare namespace bkper {
         normalizedName?: string;
         parent?: Group;
         /**
-         * Tell if the group is permanent
-         */
-        permanent?: boolean;
-        /**
          * The key/value custom properties of the Group
          */
         properties?: {
             [name: string]: string;
         };
-        type?: "ASSET" | "LIABILITY" | "INCOMING" | "OUTGOING";
     }
     export interface GroupBalances {
         accountBalances?: AccountBalances[];
@@ -766,11 +745,6 @@ declare namespace Paths {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV4GetAccount {
-        namespace Responses {
-            export type $200 = bkper.Account;
-        }
-    }
     namespace BkperV4GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
@@ -779,11 +753,6 @@ declare namespace Paths {
     namespace BkperV4GetFile {
         namespace Responses {
             export type $200 = bkper.File;
-        }
-    }
-    namespace BkperV4GetGroup {
-        namespace Responses {
-            export type $200 = bkper.Group;
         }
     }
     namespace BkperV4GetTransaction {
