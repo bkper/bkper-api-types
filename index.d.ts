@@ -25,9 +25,9 @@ declare namespace bkper {
          */
         credit?: boolean;
         /**
-         * The ids of groups of the account
+         * The groups of the account
          */
-        groups?: string[];
+        groups?: Group[];
         /**
          * Tell if the account has transaction posted
          */
@@ -657,7 +657,7 @@ declare namespace bkper {
     }
 }
 declare namespace Paths {
-    namespace BkperV4CheckTransaction {
+    namespace BkperV5CheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -668,7 +668,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4CreateAccount {
+    namespace BkperV5CreateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
         }
@@ -679,7 +679,7 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV4CreateAccountsBatch {
+    namespace BkperV5CreateAccountsBatch {
         export interface BodyParameters {
             AccountList: Parameters.AccountList;
         }
@@ -690,7 +690,7 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV4CreateApp {
+    namespace BkperV5CreateApp {
         export interface BodyParameters {
             App: Parameters.App;
         }
@@ -701,7 +701,7 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV4CreateFile {
+    namespace BkperV5CreateFile {
         export interface BodyParameters {
             File: Parameters.File;
         }
@@ -712,7 +712,7 @@ declare namespace Paths {
             export type $200 = bkper.File;
         }
     }
-    namespace BkperV4CreateGroup {
+    namespace BkperV5CreateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
         }
@@ -723,7 +723,7 @@ declare namespace Paths {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV4CreateGroupsBatch {
+    namespace BkperV5CreateGroupsBatch {
         export interface BodyParameters {
             GroupList: Parameters.GroupList;
         }
@@ -734,7 +734,7 @@ declare namespace Paths {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV4CreateTransaction {
+    namespace BkperV5CreateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -745,7 +745,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4CreateTransactionsBatch {
+    namespace BkperV5CreateTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -756,72 +756,82 @@ declare namespace Paths {
             export type $200 = bkper.TransactionList;
         }
     }
-    namespace BkperV4DeleteAccount {
+    namespace BkperV5DeleteAccount {
         namespace Responses {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV4DeleteGroup {
+    namespace BkperV5DeleteGroup {
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV4GetAccount {
+    namespace BkperV5GetAccount {
         namespace Responses {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV4GetBook {
+    namespace BkperV5GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV4GetFile {
+    namespace BkperV5GetFile {
         namespace Responses {
             export type $200 = bkper.File;
         }
     }
-    namespace BkperV4GetGroup {
+    namespace BkperV5GetGroup {
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV4GetTransaction {
+    namespace BkperV5GetTransaction {
         namespace Responses {
             export type $200 = bkper.Transaction;
         }
     }
-    namespace BkperV4ListAccounts {
-        namespace Responses {
-            export type $200 = bkper.AccountList;
-        }
-    }
-    namespace BkperV4ListActivities {
-        namespace Responses {
-            export type $200 = bkper.EventList;
-        }
-    }
-    namespace BkperV4ListBooks {
-        namespace Responses {
-            export type $200 = bkper.BookList;
-        }
-    }
-    namespace BkperV4ListGroups {
+    namespace BkperV5ListAccountGroups {
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV4ListQueries {
+    namespace BkperV5ListAccounts {
+        namespace Responses {
+            export type $200 = bkper.AccountList;
+        }
+    }
+    namespace BkperV5ListActivities {
+        namespace Responses {
+            export type $200 = bkper.EventList;
+        }
+    }
+    namespace BkperV5ListBooks {
+        namespace Responses {
+            export type $200 = bkper.BookList;
+        }
+    }
+    namespace BkperV5ListGroupAccounts {
+        namespace Responses {
+            export type $200 = bkper.AccountList;
+        }
+    }
+    namespace BkperV5ListGroups {
+        namespace Responses {
+            export type $200 = bkper.GroupList;
+        }
+    }
+    namespace BkperV5ListQueries {
         namespace Responses {
             export type $200 = bkper.QueryList;
         }
     }
-    namespace BkperV4ListTransactions {
+    namespace BkperV5ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
         }
     }
-    namespace BkperV4PatchApp {
+    namespace BkperV5PatchApp {
         export interface BodyParameters {
             App: Parameters.App;
         }
@@ -832,7 +842,7 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV4PostTransaction {
+    namespace BkperV5PostTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -843,12 +853,12 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4QueryBalances {
+    namespace BkperV5QueryBalances {
         namespace Responses {
             export type $200 = bkper.Balances;
         }
     }
-    namespace BkperV4RemoveTransaction {
+    namespace BkperV5RemoveTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -859,7 +869,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4RestoreTransaction {
+    namespace BkperV5RestoreTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -870,7 +880,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4UncheckTransaction {
+    namespace BkperV5UncheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -881,7 +891,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV4UpdateAccount {
+    namespace BkperV5UpdateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
         }
@@ -892,7 +902,7 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV4UpdateApp {
+    namespace BkperV5UpdateApp {
         export interface BodyParameters {
             App: Parameters.App;
         }
@@ -903,7 +913,7 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV4UpdateBook {
+    namespace BkperV5UpdateBook {
         export interface BodyParameters {
             Book: Parameters.Book;
         }
@@ -914,7 +924,7 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV4UpdateGroup {
+    namespace BkperV5UpdateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
         }
@@ -925,7 +935,7 @@ declare namespace Paths {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV4UpdateTransaction {
+    namespace BkperV5UpdateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
