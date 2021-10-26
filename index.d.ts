@@ -13,10 +13,6 @@ declare namespace bkper {
          */
         balance?: string;
         /**
-         * The balance of the account for checked transactions
-         */
-        checkedBalance?: string;
-        /**
          * The creation timestamp, in milliseconds
          */
         createdAt?: string;
