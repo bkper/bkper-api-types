@@ -102,6 +102,10 @@ declare namespace bkper {
     }
     export interface App {
         /**
+         * The API version of the event payload
+         */
+        apiVersion?: "v0" | "v1" | "v2" | "v3" | "v4" | "v5";
+        /**
          * The Google OAuth Client ID
          */
         clientId?: string;
@@ -365,6 +369,7 @@ declare namespace bkper {
     }
     export interface Event {
         agent?: Agent;
+        book?: Book;
         /**
          * The id of the Book associated to the Event
          */
