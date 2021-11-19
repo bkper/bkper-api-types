@@ -64,6 +64,7 @@ declare namespace bkper {
         cumulativeCredit?: string;
         cumulativeDebit?: string;
         name?: string;
+        normalizedName?: string;
         periodBalance?: string;
         periodCredit?: string;
         periodDebit?: string;
@@ -507,6 +508,7 @@ declare namespace bkper {
         cumulativeDebit?: string;
         groupBalances?: GroupBalances[];
         name?: string;
+        normalizedName?: string;
         periodBalance?: string;
         periodCredit?: string;
         periodDebit?: string;
