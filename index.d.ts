@@ -257,13 +257,16 @@ declare namespace bkper {
         range?: string;
         rangeBeginLabel?: string;
         rangeEndLabel?: string;
-        totalRemovedBalances?: number; // int32
     }
     export interface Book {
         /**
          * The id of agent that created the resource
          */
         agentId?: string;
+        /**
+         * The book closing date
+         */
+        closingDate?: string;
         collection?: Collection;
         /**
          * The creation timestamp, in milliseconds
