@@ -674,6 +674,14 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
+    namespace BkperV5CheckTransactionsBatch {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+    }
     namespace BkperV5CreateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
@@ -886,7 +894,45 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
+    namespace BkperV5TrashTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5TrashTransactionsBatch {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+    }
     namespace BkperV5UncheckTransaction {
+        export interface BodyParameters {
+            Transaction: Parameters.Transaction;
+        }
+        namespace Parameters {
+            export type Transaction = bkper.Transaction;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5UncheckTransactionsBatch {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+    }
+    namespace BkperV5UntrashTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
