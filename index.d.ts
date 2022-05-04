@@ -334,6 +334,18 @@ declare namespace bkper {
          * The time zone offset of the Book, in minutes
          */
         timeZoneOffset?: number; // int32
+        /**
+         * The total transactions posted
+         */
+        totalTransactions?: number; // int64
+        /**
+         * The total transactions posted on current month
+         */
+        totalTransactionsCurrentMonth?: number; // int64
+        /**
+         * The total transactions posted on current year
+         */
+        totalTransactionsCurrentYear?: number; // int64
     }
     export interface BookList {
         /**
