@@ -1,6 +1,6 @@
 {
   "name": "@bkper/bkper-api-types",
-  "version": "5.1.5",
+  "version": "5.1.6",
   "description": "Typescript definitions for Bkper REST API",
   "homepage": "https://api.bkper.com",
   "repository": {
