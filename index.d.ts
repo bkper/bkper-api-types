@@ -260,6 +260,10 @@ declare namespace bkper {
     }
     export interface Book {
         /**
+         * The book Accounts
+         */
+        accounts?: Account[];
+        /**
          * The id of agent that created the resource
          */
         agentId?: string;
@@ -284,6 +288,10 @@ declare namespace bkper {
          * The number of fraction digits (decimal places) of the Book
          */
         fractionDigits?: number; // int32
+        /**
+         * The book account Groups
+         */
+        groups?: Group[];
         /**
          * The unique id that identifies the Book in the system. Found at bookId url param
          */
