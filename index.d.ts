@@ -835,14 +835,14 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5ListActivities {
-        namespace Responses {
-            export type $200 = bkper.EventList;
-        }
-    }
     namespace BkperV5ListBooks {
         namespace Responses {
             export type $200 = bkper.BookList;
+        }
+    }
+    namespace BkperV5ListEvents {
+        namespace Responses {
+            export type $200 = bkper.EventList;
         }
     }
     namespace BkperV5ListGroupAccounts {
