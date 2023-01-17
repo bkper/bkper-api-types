@@ -9,7 +9,7 @@ declare namespace bkper {
          */
         archived?: boolean;
         /**
-         * The overall account balance
+         * The current account balance, when querying transactions.
          */
         balance?: string;
         /**
@@ -56,6 +56,7 @@ declare namespace bkper {
         type?: "ASSET" | "LIABILITY" | "INCOMING" | "OUTGOING";
     }
     export interface AccountBalances {
+        archived?: boolean;
         balances?: Balance[];
         checkedCumulativeBalance?: string;
         checkedPeriodBalance?: string;
@@ -63,6 +64,7 @@ declare namespace bkper {
         cumulativeBalance?: string;
         cumulativeCredit?: string;
         cumulativeDebit?: string;
+        empty?: boolean;
         name?: string;
         normalizedName?: string;
         periodBalance?: string;
@@ -216,6 +218,9 @@ declare namespace bkper {
          */
         website?: string;
     }
+    export interface AppList {
+        items?: App[];
+    }
     export interface AppPropertiesSchema {
         account?: AppPropertySchema;
         book?: AppPropertySchema;
@@ -360,6 +365,28 @@ declare namespace bkper {
          * List items
          */
         items?: Book[];
+    }
+    export interface Collaborator {
+        /**
+         * The id of agent that created the resource
+         */
+        agentId?: string;
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        /**
+         * The email of the Collaborator
+         */
+        email?: string;
+        /**
+         * The unique id that identifies the Collaborator in the Book
+         */
+        id?: string;
+        /**
+         * The permission the Collaborator has in the Book
+         */
+        permission?: "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
     }
     export interface Collection {
         /**
@@ -683,6 +710,17 @@ declare namespace bkper {
     }
 }
 declare namespace Paths {
+    namespace BkperV5AddCollaborator {
+        export interface BodyParameters {
+            Collaborator: Parameters.Collaborator;
+        }
+        namespace Parameters {
+            export type Collaborator = bkper.Collaborator;
+        }
+        namespace Responses {
+            export type $200 = bkper.Collaborator;
+        }
+    }
     namespace BkperV5CheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
@@ -805,6 +843,11 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
+    namespace BkperV5GetBalances {
+        namespace Responses {
+            export type $200 = bkper.Balances;
+        }
+    }
     namespace BkperV5GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
@@ -833,6 +876,11 @@ declare namespace Paths {
     namespace BkperV5ListAccounts {
         namespace Responses {
             export type $200 = bkper.AccountList;
+        }
+    }
+    namespace BkperV5ListBookApps {
+        namespace Responses {
+            export type $200 = bkper.AppList;
         }
     }
     namespace BkperV5ListBooks {
@@ -887,9 +935,9 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5QueryBalances {
+    namespace BkperV5RemoveCollaborator {
         namespace Responses {
-            export type $200 = bkper.Balances;
+            export type $200 = bkper.Collaborator;
         }
     }
     namespace BkperV5RemoveTransaction {
