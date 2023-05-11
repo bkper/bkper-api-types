@@ -113,6 +113,10 @@ declare namespace bkper {
          */
         clientSecret?: string;
         /**
+         * Tell if this app is connectable by a user
+         */
+        connectable?: boolean;
+        /**
          * The executable Google Apps Script deployment ID
          */
         deploymentId?: string;
@@ -131,7 +135,7 @@ declare namespace bkper {
         /**
          * Event types the App listen to
          */
-        events?: ("FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
+        events?: ("FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
         /**
          * File patters the App handles - wildcard accepted - E.g *.pdf *-bank.csv
          */
@@ -140,6 +144,10 @@ declare namespace bkper {
          * The unique agent id of the App - this can't be changed after created
          */
         id?: string;
+        /**
+         * Tell if this app is installable in a book
+         */
+        installable?: boolean;
         /**
          * The App logo url
          */
@@ -169,6 +177,10 @@ declare namespace bkper {
          */
         name?: string;
         /**
+         * The owner email
+         */
+        ownerEmail?: string;
+        /**
          * The owner company logo url
          */
         ownerLogoUrl?: string;
@@ -181,6 +193,10 @@ declare namespace bkper {
          */
         ownerWebsite?: string;
         propertiesSchema?: AppPropertiesSchema;
+        /**
+         * Tell if this app already published
+         */
+        published?: boolean;
         /**
          * The readme.md file as string
          */
@@ -414,6 +430,34 @@ declare namespace bkper {
          */
         ownerUsername?: string;
     }
+    export interface Connection {
+        /**
+         * The id of agent that created the resource
+         */
+        agentId?: string;
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        dateAddedMs?: string;
+        email?: string;
+        error?: string;
+        id?: string;
+        logo?: string;
+        name?: string;
+        properties?: {
+            [name: string]: string;
+        };
+        status?: "CONNECTED" | "DISCONNECTED";
+        userId?: string;
+        uuid?: string;
+    }
+    export interface ConnectionList {
+        /**
+         * List items
+         */
+        items?: Connection[];
+    }
     export interface Event {
         agent?: Agent;
         book?: Book;
@@ -437,7 +481,7 @@ declare namespace bkper {
         /**
          * The type of the Event
          */
-        type?: "FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "BOOK_UPDATED" | "BOOK_DELETED";
+        type?: "FILE_CREATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_UPDATED" | "BOOK_DELETED";
         user?: User;
     }
     export interface EventData {
@@ -575,6 +619,35 @@ declare namespace bkper {
          */
         items?: Group[];
     }
+    export interface Integration {
+        addedBy?: string;
+        /**
+         * The id of agent that created the resource
+         */
+        agentId?: string;
+        bookId?: string;
+        connectionId?: string;
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        dateAddedMs?: string;
+        id?: string;
+        lastUpdateMs?: string;
+        logo?: string;
+        name?: string;
+        normalizedName?: string;
+        properties?: {
+            [name: string]: string;
+        };
+        userId?: string;
+    }
+    export interface IntegrationList {
+        /**
+         * List items
+         */
+        items?: Integration[];
+    }
     export interface Query {
         /**
          * The id of agent that created the resource
@@ -694,15 +767,58 @@ declare namespace bkper {
         accounts?: Account[];
         transaction?: Transaction;
     }
+    export interface Url {
+        url?: string;
+    }
     export interface User {
         /**
          * The user public avatar url
          */
         avatarUrl?: string;
         /**
+         * True if billing is enabled for the user
+         */
+        billingEnabled?: boolean;
+        /**
+         * How many days left in trial
+         */
+        daysLeftInTrial?: number; // int32
+        /**
+         * The user email
+         */
+        email?: string;
+        /**
+         * True if user is in the free plan
+         */
+        free?: boolean;
+        /**
+         * The user full name
+         */
+        fullName?: string;
+        /**
+         * The user given name
+         */
+        givenName?: string;
+        /**
+         * The user hash
+         */
+        hash?: string;
+        /**
+         * The user hosted domain
+         */
+        hostedDomain?: string;
+        /**
+         * The user unique id
+         */
+        id?: string;
+        /**
          * The user display name
          */
         name?: string;
+        /**
+         * True if user started trial
+         */
+        startedTrial?: boolean;
         /**
          * The Bkper username of the user
          */
@@ -773,6 +889,17 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
+    namespace BkperV5CreateConnection {
+        export interface BodyParameters {
+            Connection: Parameters.Connection;
+        }
+        namespace Parameters {
+            export type Connection = bkper.Connection;
+        }
+        namespace Responses {
+            export type $200 = bkper.Connection;
+        }
+    }
     namespace BkperV5CreateFile {
         export interface BodyParameters {
             File: Parameters.File;
@@ -806,6 +933,17 @@ declare namespace Paths {
             export type $200 = bkper.GroupList;
         }
     }
+    namespace BkperV5CreateIntegration {
+        export interface BodyParameters {
+            Integration: Parameters.Integration;
+        }
+        namespace Parameters {
+            export type Integration = bkper.Integration;
+        }
+        namespace Responses {
+            export type $200 = bkper.Integration;
+        }
+    }
     namespace BkperV5CreateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
@@ -833,9 +971,19 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
+    namespace BkperV5DeleteConnection {
+        namespace Responses {
+            export type $200 = bkper.Connection;
+        }
+    }
     namespace BkperV5DeleteGroup {
         namespace Responses {
             export type $200 = bkper.Group;
+        }
+    }
+    namespace BkperV5DeleteIntegration {
+        namespace Responses {
+            export type $200 = bkper.Integration;
         }
     }
     namespace BkperV5GetAccount {
@@ -843,9 +991,19 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
+    namespace BkperV5GetApp {
+        namespace Responses {
+            export type $200 = bkper.App;
+        }
+    }
     namespace BkperV5GetBalances {
         namespace Responses {
             export type $200 = bkper.Balances;
+        }
+    }
+    namespace BkperV5GetBillingPortal {
+        namespace Responses {
+            export type $200 = bkper.Url;
         }
     }
     namespace BkperV5GetBook {
@@ -868,6 +1026,16 @@ declare namespace Paths {
             export type $200 = bkper.Transaction;
         }
     }
+    namespace BkperV5GetUser {
+        namespace Responses {
+            export type $200 = bkper.User;
+        }
+    }
+    namespace BkperV5GetUserCredentials {
+        namespace Responses {
+            export type $200 = bkper.Connection;
+        }
+    }
     namespace BkperV5ListAccountGroups {
         namespace Responses {
             export type $200 = bkper.GroupList;
@@ -878,6 +1046,11 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
+    namespace BkperV5ListApps {
+        namespace Responses {
+            export type $200 = bkper.AppList;
+        }
+    }
     namespace BkperV5ListBookApps {
         namespace Responses {
             export type $200 = bkper.AppList;
@@ -886,6 +1059,11 @@ declare namespace Paths {
     namespace BkperV5ListBooks {
         namespace Responses {
             export type $200 = bkper.BookList;
+        }
+    }
+    namespace BkperV5ListConnections {
+        namespace Responses {
+            export type $200 = bkper.ConnectionList;
         }
     }
     namespace BkperV5ListEvents {
@@ -901,6 +1079,11 @@ declare namespace Paths {
     namespace BkperV5ListGroups {
         namespace Responses {
             export type $200 = bkper.GroupList;
+        }
+    }
+    namespace BkperV5ListIntegrations {
+        namespace Responses {
+            export type $200 = bkper.IntegrationList;
         }
     }
     namespace BkperV5ListQueries {
@@ -1044,6 +1227,17 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
+    namespace BkperV5UpdateConnection {
+        export interface BodyParameters {
+            Connection: Parameters.Connection;
+        }
+        namespace Parameters {
+            export type Connection = bkper.Connection;
+        }
+        namespace Responses {
+            export type $200 = bkper.Connection;
+        }
+    }
     namespace BkperV5UpdateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
@@ -1053,6 +1247,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Group;
+        }
+    }
+    namespace BkperV5UpdateIntegration {
+        export interface BodyParameters {
+            Integration: Parameters.Integration;
+        }
+        namespace Parameters {
+            export type Integration = bkper.Integration;
+        }
+        namespace Responses {
+            export type $200 = bkper.Integration;
         }
     }
     namespace BkperV5UpdateTransaction {
