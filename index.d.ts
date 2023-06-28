@@ -441,14 +441,13 @@ declare namespace bkper {
         createdAt?: string;
         dateAddedMs?: string;
         email?: string;
-        error?: string;
         id?: string;
         logo?: string;
         name?: string;
         properties?: {
             [name: string]: string;
         };
-        status?: "CONNECTED" | "DISCONNECTED";
+        type?: "APP" | "BANK";
         userId?: string;
         uuid?: string;
     }
@@ -1011,6 +1010,11 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
+    namespace BkperV5GetConnection {
+        namespace Responses {
+            export type $200 = bkper.Connection;
+        }
+    }
     namespace BkperV5GetFile {
         namespace Responses {
             export type $200 = bkper.File;
@@ -1029,11 +1033,6 @@ declare namespace Paths {
     namespace BkperV5GetUser {
         namespace Responses {
             export type $200 = bkper.User;
-        }
-    }
-    namespace BkperV5GetUserCredentials {
-        namespace Responses {
-            export type $200 = bkper.Connection;
         }
     }
     namespace BkperV5ListAccountGroups {
@@ -1059,6 +1058,11 @@ declare namespace Paths {
     namespace BkperV5ListBooks {
         namespace Responses {
             export type $200 = bkper.BookList;
+        }
+    }
+    namespace BkperV5ListConnectionIntegrations {
+        namespace Responses {
+            export type $200 = bkper.IntegrationList;
         }
     }
     namespace BkperV5ListConnections {
