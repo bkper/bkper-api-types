@@ -253,6 +253,9 @@ declare namespace bkper {
          */
         values?: string[];
     }
+    export interface Backlog {
+        count?: number; // int32
+    }
     export interface Balance {
         checkedCumulativeBalance?: string;
         checkedPeriodBalance?: string;
@@ -1008,6 +1011,11 @@ declare namespace Paths {
     namespace BkperV5GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
+        }
+    }
+    namespace BkperV5GetBookEventsBacklog {
+        namespace Responses {
+            export type $200 = bkper.Backlog;
         }
     }
     namespace BkperV5GetConnection {
