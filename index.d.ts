@@ -460,6 +460,9 @@ declare namespace bkper {
          */
         items?: Connection[];
     }
+    export interface Count {
+        total?: number; // int64
+    }
     export interface Event {
         agent?: Agent;
         book?: Book;
@@ -856,6 +859,11 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type TransactionList = bkper.TransactionList;
+        }
+    }
+    namespace BkperV5CountTransactions {
+        namespace Responses {
+            export type $200 = bkper.Count;
         }
     }
     namespace BkperV5CreateAccount {
