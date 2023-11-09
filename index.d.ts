@@ -461,7 +461,15 @@ declare namespace bkper {
         items?: Connection[];
     }
     export interface Count {
+        day?: number; // int32
+        fuzzyDate?: number; // int32
+        month?: number; // int32
         total?: number; // int64
+        year?: number; // int32
+    }
+    export interface Counts {
+        posted?: Count[];
+        trashed?: Count[];
     }
     export interface Event {
         agent?: Agent;
@@ -474,6 +482,10 @@ declare namespace bkper {
          * The creation timestamp, in milliseconds
          */
         createdAt?: string;
+        /**
+         * The creation date time on RFC3339 format
+         */
+        createdOn?: string; // date-time
         data?: EventData;
         /**
          * The unique id that identifies the Event
@@ -866,6 +878,11 @@ declare namespace Paths {
             export type $200 = bkper.Count;
         }
     }
+    namespace BkperV5CountTransactionsPosted {
+        namespace Responses {
+            export type $200 = bkper.Counts;
+        }
+    }
     namespace BkperV5CreateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
@@ -1152,6 +1169,14 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5ReplayEvents {
+        export interface BodyParameters {
+            EventList: Parameters.EventList;
+        }
+        namespace Parameters {
+            export type EventList = bkper.EventList;
         }
     }
     namespace BkperV5RestoreTransaction {
