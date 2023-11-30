@@ -385,6 +385,11 @@ declare namespace bkper {
          */
         items?: Book[];
     }
+    export interface BotResponse {
+        agentId?: string;
+        message?: string;
+        type?: "INFO" | "WARNING" | "ERROR";
+    }
     export interface Collaborator {
         /**
          * The id of agent that created the resource
@@ -478,6 +483,10 @@ declare namespace bkper {
          * The id of the Book associated to the Event
          */
         bookId?: string;
+        /**
+         * The list of bot responses associated to the Event
+         */
+        botResponses?: BotResponse[];
         /**
          * The creation timestamp, in milliseconds
          */
