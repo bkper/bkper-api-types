@@ -58,8 +58,6 @@ declare namespace bkper {
     export interface AccountBalances {
         archived?: boolean;
         balances?: Balance[];
-        checkedCumulativeBalance?: string;
-        checkedPeriodBalance?: string;
         credit?: boolean;
         cumulativeBalance?: string;
         cumulativeCredit?: string;
@@ -74,8 +72,6 @@ declare namespace bkper {
         properties?: {
             [name: string]: string;
         };
-        uncheckedCumulativeBalance?: string;
-        uncheckedPeriodBalance?: string;
     }
     export interface AccountList {
         /**
@@ -257,8 +253,6 @@ declare namespace bkper {
         count?: number; // int32
     }
     export interface Balance {
-        checkedCumulativeBalance?: string;
-        checkedPeriodBalance?: string;
         cumulativeBalance?: string;
         cumulativeCredit?: string;
         cumulativeDebit?: string;
@@ -268,8 +262,6 @@ declare namespace bkper {
         periodBalance?: string;
         periodCredit?: string;
         periodDebit?: string;
-        uncheckedCumulativeBalance?: string;
-        uncheckedPeriodBalance?: string;
         year?: number; // int32
     }
     export interface Balances {
@@ -378,6 +370,10 @@ declare namespace bkper {
          * The total transactions posted on current year
          */
         totalTransactionsCurrentYear?: number; // int64
+        /**
+         * The Visibility of the Book
+         */
+        visibility?: "PUBLIC" | "PRIVATE";
     }
     export interface BookList {
         /**
@@ -437,6 +433,17 @@ declare namespace bkper {
          * The username of the Collection owner
          */
         ownerUsername?: string;
+        permission?: "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
+    }
+    export interface CollectionList {
+        /**
+         * List items
+         */
+        items?: Collection[];
     }
     export interface Connection {
         /**
@@ -620,8 +627,6 @@ declare namespace bkper {
     export interface GroupBalances {
         accountBalances?: AccountBalances[];
         balances?: Balance[];
-        checkedCumulativeBalance?: string;
-        checkedPeriodBalance?: string;
         credit?: boolean;
         cumulativeBalance?: string;
         cumulativeCredit?: string;
@@ -636,8 +641,6 @@ declare namespace bkper {
         properties?: {
             [name: string]: string;
         };
-        uncheckedCumulativeBalance?: string;
-        uncheckedPeriodBalance?: string;
     }
     export interface GroupList {
         /**
@@ -701,6 +704,22 @@ declare namespace bkper {
          * List items
          */
         items?: Query[];
+    }
+    export interface Template {
+        bookId?: string;
+        bookLink?: string;
+        category?: string;
+        description?: string;
+        imageUrl?: string;
+        name?: string;
+        sheetsLink?: string;
+        timesUsed?: number; // int32
+    }
+    export interface TemplateList {
+        /**
+         * List items
+         */
+        items?: Template[];
     }
     export interface Transaction {
         /**
@@ -802,6 +821,10 @@ declare namespace bkper {
          */
         avatarUrl?: string;
         /**
+         * True if user already had any bank connection
+         */
+        bankConnections?: boolean;
+        /**
          * True if billing is enabled for the user
          */
         billingEnabled?: boolean;
@@ -852,6 +875,17 @@ declare namespace bkper {
     }
 }
 declare namespace Paths {
+    namespace BkperV5AddBooksToCollection {
+        export interface BodyParameters {
+            BookList: Parameters.BookList;
+        }
+        namespace Parameters {
+            export type BookList = bkper.BookList;
+        }
+        namespace Responses {
+            export type $200 = bkper.BookList;
+        }
+    }
     namespace BkperV5AddCollaborator {
         export interface BodyParameters {
             Collaborator: Parameters.Collaborator;
@@ -925,6 +959,17 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
+    namespace BkperV5CreateCollection {
+        export interface BodyParameters {
+            Collection: Parameters.Collection;
+        }
+        namespace Parameters {
+            export type Collection = bkper.Collection;
+        }
+        namespace Responses {
+            export type $200 = bkper.Collection;
+        }
+    }
     namespace BkperV5CreateConnection {
         export interface BodyParameters {
             Connection: Parameters.Connection;
@@ -980,6 +1025,11 @@ declare namespace Paths {
             export type $200 = bkper.Integration;
         }
     }
+    namespace BkperV5CreateNewBook {
+        namespace Responses {
+            export type $200 = bkper.Book;
+        }
+    }
     namespace BkperV5CreateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
@@ -1005,6 +1055,11 @@ declare namespace Paths {
     namespace BkperV5DeleteAccount {
         namespace Responses {
             export type $200 = bkper.Account;
+        }
+    }
+    namespace BkperV5DeleteCollection {
+        namespace Responses {
+            export type $200 = bkper.BookList;
         }
     }
     namespace BkperV5DeleteConnection {
@@ -1102,6 +1157,11 @@ declare namespace Paths {
             export type $200 = bkper.BookList;
         }
     }
+    namespace BkperV5ListCollections {
+        namespace Responses {
+            export type $200 = bkper.CollectionList;
+        }
+    }
     namespace BkperV5ListConnectionIntegrations {
         namespace Responses {
             export type $200 = bkper.IntegrationList;
@@ -1137,6 +1197,11 @@ declare namespace Paths {
             export type $200 = bkper.QueryList;
         }
     }
+    namespace BkperV5ListTemplates {
+        namespace Responses {
+            export type $200 = bkper.TemplateList;
+        }
+    }
     namespace BkperV5ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
@@ -1162,6 +1227,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5RemoveBooksFromCollection {
+        export interface BodyParameters {
+            BookList: Parameters.BookList;
+        }
+        namespace Parameters {
+            export type BookList = bkper.BookList;
+        }
+        namespace Responses {
+            export type $200 = bkper.BookList;
         }
     }
     namespace BkperV5RemoveCollaborator {
@@ -1281,6 +1357,17 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
+    namespace BkperV5UpdateCollection {
+        export interface BodyParameters {
+            Collection: Parameters.Collection;
+        }
+        namespace Parameters {
+            export type Collection = bkper.Collection;
+        }
+        namespace Responses {
+            export type $200 = bkper.Collection;
+        }
+    }
     namespace BkperV5UpdateConnection {
         export interface BodyParameters {
             Connection: Parameters.Connection;
@@ -1331,6 +1418,9 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type TransactionList = bkper.TransactionList;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionList;
         }
     }
 }
