@@ -113,10 +113,6 @@ declare namespace bkper {
          */
         connectable?: boolean;
         /**
-         * The executable Google Apps Script deployment ID
-         */
-        deploymentId?: string;
-        /**
          * Tell if the code app is deprecated
          */
         deprecated?: boolean;
@@ -209,10 +205,6 @@ declare namespace bkper {
          * The Google OAuth Scopes used by the app
          */
         scopes?: string[];
-        /**
-         * The executable Google Apps Script ID
-         */
-        scriptId?: string;
         /**
          * The user emails to enable the App while not yet published
          */
@@ -600,6 +592,10 @@ declare namespace bkper {
          */
         id?: string;
         /**
+         * Tell if the group is locked by the Book owner
+         */
+        locked?: boolean;
+        /**
          * Tell if has mixed type of accounts
          */
         mixed?: boolean;
@@ -727,6 +723,14 @@ declare namespace bkper {
          */
         agentId?: string;
         /**
+         * The agent logo that created the transaction
+         */
+        agentLogo?: string;
+        /**
+         * The agent name that created the transaction
+         */
+        agentName?: string;
+        /**
          * The amount on format ####.##
          */
         amount?: string;
@@ -738,6 +742,10 @@ declare namespace bkper {
          * The creation timestamp, in milliseconds
          */
         createdAt?: string;
+        /**
+         * The actor username that created the transaction
+         */
+        createdBy?: string;
         creditAccount?: Account;
         /**
          * The date on ISO format yyyy-MM-dd
@@ -1026,6 +1034,12 @@ declare namespace Paths {
         }
     }
     namespace BkperV5CreateNewBook {
+        export interface BodyParameters {
+            Book: Parameters.Book;
+        }
+        namespace Parameters {
+            export type Book = bkper.Book;
+        }
         namespace Responses {
             export type $200 = bkper.Book;
         }
@@ -1347,6 +1361,17 @@ declare namespace Paths {
         }
     }
     namespace BkperV5UpdateBook {
+        export interface BodyParameters {
+            Book: Parameters.Book;
+        }
+        namespace Parameters {
+            export type Book = bkper.Book;
+        }
+        namespace Responses {
+            export type $200 = bkper.Book;
+        }
+    }
+    namespace BkperV5UpdateBookDeprecated {
         export interface BodyParameters {
             Book: Parameters.Book;
         }
