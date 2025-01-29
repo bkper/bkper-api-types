@@ -276,6 +276,10 @@ declare namespace bkper {
          */
         agentId?: string;
         /**
+         * Tells if the Book has auto post enabled
+         */
+        autoPost?: boolean;
+        /**
          * The book closing date
          */
         closingDate?: string;
@@ -872,6 +876,10 @@ declare namespace bkper {
          * The user display name
          */
         name?: string;
+        /**
+         * The user plan
+         */
+        plan?: string;
         /**
          * True if user started trial
          */
