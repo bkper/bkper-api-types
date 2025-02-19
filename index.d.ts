@@ -379,6 +379,7 @@ declare namespace bkper {
     }
     export interface BotResponse {
         agentId?: string;
+        createdAt?: string;
         message?: string;
         type?: "INFO" | "WARNING" | "ERROR";
     }
