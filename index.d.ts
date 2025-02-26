@@ -1090,6 +1090,11 @@ declare namespace Paths {
             export type $200 = bkper.Connection;
         }
     }
+    namespace BkperV5DeleteEventResponse {
+        namespace Responses {
+            export type $200 = bkper.Event;
+        }
+    }
     namespace BkperV5DeleteGroup {
         namespace Responses {
             export type $200 = bkper.Group;
@@ -1277,6 +1282,11 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5ReplayEventResponse {
+        namespace Responses {
+            export type $200 = bkper.Event;
         }
     }
     namespace BkperV5ReplayEvents {
