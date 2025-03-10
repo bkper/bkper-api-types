@@ -482,6 +482,7 @@ declare namespace bkper {
         items?: Connection[];
     }
     export interface Conversation {
+        agent?: Agent;
         /**
          * The creation timestamp, in milliseconds
          */
@@ -1264,14 +1265,14 @@ declare namespace Paths {
             export type $200 = bkper.MessageList;
         }
     }
-    namespace BkperV5ListAppConversations {
-        namespace Responses {
-            export type $200 = bkper.ConversationList;
-        }
-    }
     namespace BkperV5ListApps {
         namespace Responses {
             export type $200 = bkper.AppList;
+        }
+    }
+    namespace BkperV5ListAppsConversations {
+        namespace Responses {
+            export type $200 = bkper.ConversationList;
         }
     }
     namespace BkperV5ListBookApps {
