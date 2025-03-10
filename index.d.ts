@@ -113,6 +113,14 @@ declare namespace bkper {
          */
         connectable?: boolean;
         /**
+         * The Conversation endpoint URL to respond to conversation messages
+         */
+        conversationUrl?: string;
+        /**
+         * The Conversation endpoint URL to respond to conversation messages in dev mode
+         */
+        conversationUrlDev?: string;
+        /**
          * Tell if the code app is deprecated
          */
         deprecated?: boolean;
@@ -144,6 +152,10 @@ declare namespace bkper {
          * The App logo url
          */
         logoUrl?: string;
+        /**
+         * The App logo url in dark mode
+         */
+        logoUrlDark?: string;
         /**
          * The menu popup window height
          */
@@ -210,11 +222,11 @@ declare namespace bkper {
          */
         userEmails?: string;
         /**
-         * The Webhook URL to listen for book events
+         * The Webhook endpoint URL to listen for book events
          */
         webhookUrl?: string;
         /**
-         * The Webhook URL to listen for book events in dev mode
+         * The Webhook endpoint URL to listen for book events in dev mode
          */
         webhookUrlDev?: string;
         /**
@@ -469,6 +481,34 @@ declare namespace bkper {
          */
         items?: Connection[];
     }
+    export interface Conversation {
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        /**
+         * The creation date time on RFC3339 format
+         */
+        createdOn?: string; // date-time
+        /**
+         * The unique id that identifies the Conversation
+         */
+        id?: string;
+        /**
+         * The context messages
+         */
+        messages?: Message[];
+        /**
+         * The title of the Conversation
+         */
+        title?: string;
+    }
+    export interface ConversationList {
+        /**
+         * List items
+         */
+        items?: Conversation[];
+    }
     export interface Count {
         day?: number; // int32
         fuzzyDate?: number; // int32
@@ -677,6 +717,36 @@ declare namespace bkper {
          * List items
          */
         items?: Integration[];
+    }
+    export interface Message {
+        agent?: Agent;
+        /**
+         * The id of the Book in the context of the Message
+         */
+        bookId?: string;
+        /**
+         * The content of the Message
+         */
+        content?: string;
+        /**
+         * The creation timestamp, in milliseconds
+         */
+        createdAt?: string;
+        /**
+         * The creation date time on RFC3339 format
+         */
+        createdOn?: string; // date-time
+        /**
+         * The unique id that identifies the Message
+         */
+        id?: string;
+        user?: User;
+    }
+    export interface MessageList {
+        /**
+         * List items
+         */
+        items?: Message[];
     }
     export interface Query {
         /**
@@ -912,6 +982,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collaborator;
+        }
+    }
+    namespace BkperV5ChatWithApp {
+        export interface BodyParameters {
+            Conversation: Parameters.Conversation;
+        }
+        namespace Parameters {
+            export type Conversation = bkper.Conversation;
+        }
+        namespace Responses {
+            export type $200 = bkper.Conversation;
         }
     }
     namespace BkperV5CheckTransaction {
@@ -1168,6 +1249,16 @@ declare namespace Paths {
     namespace BkperV5ListAccounts {
         namespace Responses {
             export type $200 = bkper.AccountList;
+        }
+    }
+    namespace BkperV5ListAppConversationMessages {
+        namespace Responses {
+            export type $200 = bkper.MessageList;
+        }
+    }
+    namespace BkperV5ListAppConversations {
+        namespace Responses {
+            export type $200 = bkper.ConversationList;
         }
     }
     namespace BkperV5ListApps {
