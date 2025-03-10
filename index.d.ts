@@ -495,13 +495,21 @@ declare namespace bkper {
          */
         id?: string;
         /**
-         * The context messages
+         * The conversation messages
          */
         messages?: Message[];
         /**
          * The title of the Conversation
          */
         title?: string;
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
+        /**
+         * The last update date time on RFC3339 format
+         */
+        updatedOn?: string; // date-time
     }
     export interface ConversationList {
         /**
