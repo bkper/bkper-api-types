@@ -121,6 +121,10 @@ declare namespace bkper {
          */
         conversationUrlDev?: string;
         /**
+         * Tell if this app is conversational
+         */
+        conversational?: boolean;
+        /**
          * Tell if the code app is deprecated
          */
         deprecated?: boolean;
