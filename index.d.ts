@@ -734,10 +734,6 @@ declare namespace bkper {
     export interface Message {
         agent?: Agent;
         /**
-         * The id of the Book in the context of the Message
-         */
-        bookId?: string;
-        /**
          * The content of the Message
          */
         content?: string;
@@ -753,6 +749,12 @@ declare namespace bkper {
          * The unique id that identifies the Message
          */
         id?: string;
+        /**
+         * The key/value custom properties of the Message
+         */
+        properties?: {
+            [name: string]: string;
+        };
         user?: User;
     }
     export interface MessageList {
