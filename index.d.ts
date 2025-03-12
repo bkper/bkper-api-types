@@ -749,6 +749,7 @@ declare namespace bkper {
          * The unique id that identifies the Message
          */
         id?: string;
+        parent?: Message;
         /**
          * The key/value custom properties of the Message
          */
@@ -999,17 +1000,6 @@ declare namespace Paths {
             export type $200 = bkper.Collaborator;
         }
     }
-    namespace BkperV5ChatWithApp {
-        export interface BodyParameters {
-            Conversation: Parameters.Conversation;
-        }
-        namespace Parameters {
-            export type Conversation = bkper.Conversation;
-        }
-        namespace Responses {
-            export type $200 = bkper.Conversation;
-        }
-    }
     namespace BkperV5CheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
@@ -1094,6 +1084,17 @@ declare namespace Paths {
             export type $200 = bkper.Connection;
         }
     }
+    namespace BkperV5CreateConversation {
+        export interface BodyParameters {
+            Conversation: Parameters.Conversation;
+        }
+        namespace Parameters {
+            export type Conversation = bkper.Conversation;
+        }
+        namespace Responses {
+            export type $200 = bkper.Conversation;
+        }
+    }
     namespace BkperV5CreateFile {
         export interface BodyParameters {
             File: Parameters.File;
@@ -1136,6 +1137,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Integration;
+        }
+    }
+    namespace BkperV5CreateMessage {
+        export interface BodyParameters {
+            Message: Parameters.Message;
+        }
+        namespace Parameters {
+            export type Message = bkper.Message;
+        }
+        namespace Responses {
+            export type $200 = bkper.Message;
         }
     }
     namespace BkperV5CreateNewBook {
@@ -1266,19 +1278,9 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5ListAppConversationMessages {
-        namespace Responses {
-            export type $200 = bkper.MessageList;
-        }
-    }
     namespace BkperV5ListApps {
         namespace Responses {
             export type $200 = bkper.AppList;
-        }
-    }
-    namespace BkperV5ListAppsConversations {
-        namespace Responses {
-            export type $200 = bkper.ConversationList;
         }
     }
     namespace BkperV5ListBookApps {
@@ -1306,6 +1308,11 @@ declare namespace Paths {
             export type $200 = bkper.ConnectionList;
         }
     }
+    namespace BkperV5ListConversations {
+        namespace Responses {
+            export type $200 = bkper.ConversationList;
+        }
+    }
     namespace BkperV5ListEvents {
         namespace Responses {
             export type $200 = bkper.EventList;
@@ -1324,6 +1331,11 @@ declare namespace Paths {
     namespace BkperV5ListIntegrations {
         namespace Responses {
             export type $200 = bkper.IntegrationList;
+        }
+    }
+    namespace BkperV5ListMessages {
+        namespace Responses {
+            export type $200 = bkper.MessageList;
         }
     }
     namespace BkperV5ListQueries {
