@@ -89,6 +89,10 @@ declare namespace bkper {
          */
         logo?: string;
         /**
+         * The agent logo on dark mode. Public url or Base64 encoded
+         */
+        logoDark?: string;
+        /**
          * The agent name
          */
         name?: string;
@@ -814,11 +818,15 @@ declare namespace bkper {
          */
         agentId?: string;
         /**
-         * The agent logo that created the transaction
+         * The logo of the agent that created the transaction
          */
         agentLogo?: string;
         /**
-         * The agent name that created the transaction
+         * The logo in dark mode, of the agent that created the transaction
+         */
+        agentLogoDark?: string;
+        /**
+         * The name of the agent that created the transaction
          */
         agentName?: string;
         /**
