@@ -1221,6 +1221,11 @@ declare namespace Paths {
             export type $200 = bkper.Integration;
         }
     }
+    namespace BkperV5DeleteQuery {
+        namespace Responses {
+            export type $200 = bkper.Query;
+        }
+    }
     namespace BkperV5GetAccount {
         namespace Responses {
             export type $200 = bkper.Account;
@@ -1432,6 +1437,28 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+        }
+    }
+    namespace BkperV5SaveQuery {
+        export interface BodyParameters {
+            Query: Parameters.Query;
+        }
+        namespace Parameters {
+            export type Query = bkper.Query;
+        }
+        namespace Responses {
+            export type $200 = bkper.Query;
+        }
+    }
+    namespace BkperV5StreamConversation {
+        export interface BodyParameters {
+            Message: Parameters.Message;
+        }
+        namespace Parameters {
+            export type Message = bkper.Message;
+        }
+        namespace Responses {
+            export type $200 = bkper.Message;
         }
     }
     namespace BkperV5TrashTransaction {
