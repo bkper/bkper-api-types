@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "dtsgen -o index.d.ts --url https://dev.bkper.com/openapi.json",
+    "build": "dtsgen -o index.d.ts --url https://app.bkper.com/openapi.json",
     "patch": "yarn version --patch",
     "minor": "yarn version --minor",
     "major": "yarn version --major",
