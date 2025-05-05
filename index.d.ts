@@ -1598,6 +1598,17 @@ declare namespace Paths {
             export type $200 = bkper.Integration;
         }
     }
+    namespace BkperV5UpdateQuery {
+        export interface BodyParameters {
+            Query: Parameters.Query;
+        }
+        namespace Parameters {
+            export type Query = bkper.Query;
+        }
+        namespace Responses {
+            export type $200 = bkper.Query;
+        }
+    }
     namespace BkperV5UpdateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
