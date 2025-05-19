@@ -1510,6 +1510,14 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
+    namespace BkperV5UntrashTransactionsBatch {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+    }
     namespace BkperV5UpdateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
