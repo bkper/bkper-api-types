@@ -1388,6 +1388,14 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
+    namespace BkperV5PostTransactionsBatch {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+    }
     namespace BkperV5RemoveBooksFromCollection {
         export interface BodyParameters {
             BookList: Parameters.BookList;
