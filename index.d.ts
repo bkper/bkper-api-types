@@ -894,6 +894,10 @@ declare namespace bkper {
          */
         trashed?: boolean;
         /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
+        /**
          * The transaction urls
          */
         urls?: string[];
