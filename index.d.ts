@@ -54,6 +54,10 @@ declare namespace bkper {
          * The type of the account
          */
         type?: "ASSET" | "LIABILITY" | "INCOMING" | "OUTGOING";
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
     }
     export interface AccountBalances {
         archived?: boolean;
@@ -387,6 +391,10 @@ declare namespace bkper {
          */
         totalTransactionsCurrentYear?: number; // int64
         /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
+        /**
          * The Visibility of the Book
          */
         visibility?: "PUBLIC" | "PRIVATE";
@@ -424,6 +432,10 @@ declare namespace bkper {
          * The permission the Collaborator has in the Book
          */
         permission?: "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
     }
     export interface Collection {
         /**
@@ -480,6 +492,10 @@ declare namespace bkper {
             [name: string]: string;
         };
         type?: "APP" | "BANK";
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
         userId?: string;
         uuid?: string;
     }
@@ -620,6 +636,10 @@ declare namespace bkper {
          */
         size?: number; // int64
         /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
+        /**
          * The file serving url
          */
         url?: string;
@@ -681,6 +701,10 @@ declare namespace bkper {
             [name: string]: string;
         };
         type?: "ASSET" | "LIABILITY" | "INCOMING" | "OUTGOING";
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
     }
     export interface GroupBalances {
         accountBalances?: AccountBalances[];
@@ -727,6 +751,10 @@ declare namespace bkper {
         properties?: {
             [name: string]: string;
         };
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
         userId?: string;
     }
     export interface IntegrationList {
@@ -789,6 +817,10 @@ declare namespace bkper {
          * The title of the saved Query
          */
         title?: string;
+        /**
+         * The last update timestamp, in milliseconds
+         */
+        updatedAt?: string;
     }
     export interface QueryList {
         /**
@@ -1029,6 +1061,11 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type TransactionList = bkper.TransactionList;
+        }
+    }
+    namespace BkperV5CopyBook {
+        namespace Responses {
+            export type $200 = bkper.Book;
         }
     }
     namespace BkperV5CountTransactions {
