@@ -282,6 +282,7 @@ declare namespace bkper {
     }
     export interface Balances {
         accountBalances?: AccountBalances[];
+        balancesUrl?: string;
         groupBalances?: GroupBalances[];
         nextRange?: string;
         periodicity?: "DAILY" | "MONTHLY" | "YEARLY";
