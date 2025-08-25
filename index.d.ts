@@ -633,6 +633,12 @@ declare namespace bkper {
          */
         name?: string;
         /**
+         * The key/value custom properties of the File
+         */
+        properties?: {
+            [name: string]: string;
+        };
+        /**
          * The file size in bytes
          */
         size?: number; // int64
