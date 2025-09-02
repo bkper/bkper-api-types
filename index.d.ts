@@ -438,6 +438,12 @@ declare namespace bkper {
          */
         updatedAt?: string;
     }
+    /**
+     * An ordered list of Collaborator
+     */
+    export interface CollaboratorPayloadCollection {
+        items?: Collaborator[];
+    }
     export interface Collection {
         /**
          * The id of agent that created the resource
@@ -1352,6 +1358,11 @@ declare namespace Paths {
     namespace BkperV5ListBooks {
         namespace Responses {
             export type $200 = bkper.BookList;
+        }
+    }
+    namespace BkperV5ListCollaborators {
+        namespace Responses {
+            export type $200 = /* An ordered list of Collaborator */ bkper.CollaboratorPayloadCollection;
         }
     }
     namespace BkperV5ListCollections {
