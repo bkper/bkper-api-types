@@ -13,6 +13,10 @@ declare namespace bkper {
          */
         balance?: string;
         /**
+         * Whether the account balance has been verified/audited
+         */
+        balanceVerified?: boolean;
+        /**
          * The creation timestamp, in milliseconds
          */
         createdAt?: string;
