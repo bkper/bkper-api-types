@@ -125,18 +125,6 @@ declare namespace bkper {
          */
         connectable?: boolean;
         /**
-         * The Conversation endpoint URL to respond to conversation messages
-         */
-        conversationUrl?: string;
-        /**
-         * The Conversation endpoint URL to respond to conversation messages in dev mode
-         */
-        conversationUrlDev?: string;
-        /**
-         * Tell if this app is conversational
-         */
-        conversational?: boolean;
-        /**
          * Tell if the code app is deprecated
          */
         deprecated?: boolean;
