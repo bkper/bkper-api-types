@@ -516,43 +516,6 @@ declare namespace bkper {
          */
         items?: Connection[];
     }
-    export interface Conversation {
-        agent?: Agent;
-        /**
-         * The creation timestamp, in milliseconds
-         */
-        createdAt?: string;
-        /**
-         * The creation date time on RFC3339 format
-         */
-        createdOn?: string; // date-time
-        /**
-         * The unique id that identifies the Conversation
-         */
-        id?: string;
-        /**
-         * The conversation messages
-         */
-        messages?: Message[];
-        /**
-         * The title of the Conversation
-         */
-        title?: string;
-        /**
-         * The last update timestamp, in milliseconds
-         */
-        updatedAt?: string;
-        /**
-         * The last update date time on RFC3339 format
-         */
-        updatedOn?: string; // date-time
-    }
-    export interface ConversationList {
-        /**
-         * List items
-         */
-        items?: Conversation[];
-    }
     export interface Count {
         day?: number; // int32
         fuzzyDate?: number; // int32
@@ -779,39 +742,6 @@ declare namespace bkper {
          * List items
          */
         items?: Integration[];
-    }
-    export interface Message {
-        agent?: Agent;
-        /**
-         * The content of the Message
-         */
-        content?: string;
-        /**
-         * The creation timestamp, in milliseconds
-         */
-        createdAt?: string;
-        /**
-         * The creation date time on RFC3339 format
-         */
-        createdOn?: string; // date-time
-        /**
-         * The unique id that identifies the Message
-         */
-        id?: string;
-        parent?: Message;
-        /**
-         * The key/value custom properties of the Message
-         */
-        properties?: {
-            [name: string]: string;
-        };
-        user?: User;
-    }
-    export interface MessageList {
-        /**
-         * List items
-         */
-        items?: Message[];
     }
     export interface Query {
         /**
@@ -1150,17 +1080,6 @@ declare namespace Paths {
             export type $200 = bkper.Connection;
         }
     }
-    namespace BkperV5CreateConversation {
-        export interface BodyParameters {
-            Conversation: Parameters.Conversation;
-        }
-        namespace Parameters {
-            export type Conversation = bkper.Conversation;
-        }
-        namespace Responses {
-            export type $200 = bkper.Conversation;
-        }
-    }
     namespace BkperV5CreateFile {
         export interface BodyParameters {
             File: Parameters.File;
@@ -1203,17 +1122,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Integration;
-        }
-    }
-    namespace BkperV5CreateMessage {
-        export interface BodyParameters {
-            Message: Parameters.Message;
-        }
-        namespace Parameters {
-            export type Message = bkper.Message;
-        }
-        namespace Responses {
-            export type $200 = bkper.Message;
         }
     }
     namespace BkperV5CreateNewBook {
@@ -1384,11 +1292,6 @@ declare namespace Paths {
             export type $200 = bkper.ConnectionList;
         }
     }
-    namespace BkperV5ListConversations {
-        namespace Responses {
-            export type $200 = bkper.ConversationList;
-        }
-    }
     namespace BkperV5ListEvents {
         namespace Responses {
             export type $200 = bkper.EventList;
@@ -1407,11 +1310,6 @@ declare namespace Paths {
     namespace BkperV5ListIntegrations {
         namespace Responses {
             export type $200 = bkper.IntegrationList;
-        }
-    }
-    namespace BkperV5ListMessages {
-        namespace Responses {
-            export type $200 = bkper.MessageList;
         }
     }
     namespace BkperV5ListQueries {
@@ -1519,17 +1417,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Query;
-        }
-    }
-    namespace BkperV5StreamConversation {
-        export interface BodyParameters {
-            Message: Parameters.Message;
-        }
-        namespace Parameters {
-            export type Message = bkper.Message;
-        }
-        namespace Responses {
-            export type $200 = bkper.Message;
         }
     }
     namespace BkperV5TrashTransaction {
