@@ -714,6 +714,7 @@ declare namespace bkper {
         id?: string;
         lastUpdateMs?: string;
         logo?: string;
+        logoDark?: string;
         name?: string;
         normalizedName?: string;
         properties?: {
