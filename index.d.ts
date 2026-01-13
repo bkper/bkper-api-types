@@ -133,9 +133,13 @@ declare namespace bkper {
          */
         description?: string;
         /**
-         * The developer email
+         * The developer email (deprecated, use developerEmails)
          */
         developerEmail?: string;
+        /**
+         * The developer emails, comma or space separated
+         */
+        developerEmails?: string;
         /**
          * Event types the App listen to
          */
