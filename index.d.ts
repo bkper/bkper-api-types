@@ -133,13 +133,9 @@ declare namespace bkper {
          */
         description?: string;
         /**
-         * The developer email (deprecated, use developerEmails)
+         * The developers (usernames and domain patterns), comma or space separated
          */
-        developerEmail?: string;
-        /**
-         * The developer emails, comma or space separated
-         */
-        developerEmails?: string;
+        developers?: string;
         /**
          * Event types the App listen to
          */
@@ -189,9 +185,13 @@ declare namespace bkper {
          */
         name?: string;
         /**
-         * The owner email
+         * The owner user email
          */
         ownerEmail?: string;
+        /**
+         * The owner user id
+         */
+        ownerId?: string;
         /**
          * The owner company logo url
          */
@@ -226,9 +226,9 @@ declare namespace bkper {
          */
         scopes?: string[];
         /**
-         * The user emails to enable the App while not yet published
+         * The users (usernames and domain patterns) to enable the App while not yet published
          */
-        userEmails?: string;
+        users?: string;
         /**
          * The Webhook endpoint URL to listen for book events
          */
@@ -912,6 +912,10 @@ declare namespace bkper {
          */
         bankConnections?: boolean;
         /**
+         * The billing admin email for this user's billing account
+         */
+        billingAdminEmail?: string;
+        /**
          * True if billing is enabled for the user
          */
         billingEnabled?: boolean;
@@ -956,9 +960,21 @@ declare namespace bkper {
          */
         plan?: string;
         /**
+         * True if subscription payment is overdue
+         */
+        planOverdue?: boolean;
+        /**
          * True if user started trial
          */
         startedTrial?: boolean;
+        /**
+         * User-level total transactions this month
+         */
+        totalTransactionsThisMonth?: number; // int64
+        /**
+         * User-level total transactions this year
+         */
+        totalTransactionsThisYear?: number; // int64
         /**
          * The Bkper username of the user
          */
@@ -1327,17 +1343,6 @@ declare namespace Paths {
     namespace BkperV5ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
-        }
-    }
-    namespace BkperV5PatchApp {
-        export interface BodyParameters {
-            App: Parameters.App;
-        }
-        namespace Parameters {
-            export type App = bkper.App;
-        }
-        namespace Responses {
-            export type $200 = bkper.App;
         }
     }
     namespace BkperV5PostTransaction {
