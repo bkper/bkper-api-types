@@ -287,6 +287,40 @@ declare namespace bkper {
         rangeBeginLabel?: string;
         rangeEndLabel?: string;
     }
+    export interface Billing {
+        /**
+         * The billing admin email for the user's billing account
+         */
+        adminEmail?: string;
+        /**
+         * How many days the user has left in the trial period
+         */
+        daysLeftInTrial?: number; // int32
+        /**
+         * True if billing is enabled for the user
+         */
+        enabled?: boolean;
+        /**
+         * The user's current plan
+         */
+        plan?: string;
+        /**
+         * True if subscription payment is overdue
+         */
+        planOverdue?: boolean;
+        /**
+         * True if the user has started the trial period
+         */
+        startedTrial?: boolean;
+        /**
+         * User-level total transactions this month
+         */
+        totalTransactionsThisMonth?: number; // int64
+        /**
+         * User-level total transactions this year
+         */
+        totalTransactionsThisYear?: number; // int64
+    }
     export interface Book {
         /**
          * The book Accounts
@@ -1225,6 +1259,11 @@ declare namespace Paths {
             export type $200 = bkper.Balances;
         }
     }
+    namespace BkperV5GetBilling {
+        namespace Responses {
+            export type $200 = bkper.Billing;
+        }
+    }
     namespace BkperV5GetBillingPortal {
         namespace Responses {
             export type $200 = bkper.Url;
@@ -1278,6 +1317,11 @@ declare namespace Paths {
     namespace BkperV5ListApps {
         namespace Responses {
             export type $200 = bkper.AppList;
+        }
+    }
+    namespace BkperV5ListBillingCounts {
+        namespace Responses {
+            export type $200 = bkper.Counts;
         }
     }
     namespace BkperV5ListBookApps {
