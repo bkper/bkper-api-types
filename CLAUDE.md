@@ -4,7 +4,7 @@
 
 **DO NOT manually edit `index.d.ts`** - this file is auto-generated.
 
-The types are generated from the Bkper [Open API spec](https://app.bkper.com/openapi.json) using the [dtsgenerator](https://github.com/horiuchi/dtsgenerator) tool.
+The types are generated from the Bkper [Open API spec](https://bkper.com/openapi.json) using the [dtsgenerator](https://github.com/horiuchi/dtsgenerator) tool.
 
 ## Regenerating Types
 
