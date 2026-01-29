@@ -297,9 +297,17 @@ declare namespace bkper {
          */
         daysLeftInTrial?: number; // int32
         /**
+         * The user's email address
+         */
+        email?: string;
+        /**
          * True if billing is enabled for the user
          */
         enabled?: boolean;
+        /**
+         * The user hosted domain
+         */
+        hostedDomain?: string;
         /**
          * The user's current plan
          */
@@ -1262,6 +1270,11 @@ declare namespace Paths {
     namespace BkperV5GetBilling {
         namespace Responses {
             export type $200 = bkper.Billing;
+        }
+    }
+    namespace BkperV5GetBillingCheckout {
+        namespace Responses {
+            export type $200 = bkper.Url;
         }
     }
     namespace BkperV5GetBillingPortal {
