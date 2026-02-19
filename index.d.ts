@@ -214,6 +214,10 @@ declare namespace bkper {
          */
         readme?: string;
         /**
+         * The readme.md file as raw markdown string
+         */
+        readmeMd?: string;
+        /**
          * Tell if the code repository is private
          */
         repoPrivate?: boolean;
