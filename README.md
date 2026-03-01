@@ -8,15 +8,23 @@ The types are generated based on the Bkper [Open API spec](https://bkper.com/ope
 
 More information at the [Bkper Developer Documentation](http://bkper.com/docs/#rest-api)
 
-# Instalation
+# Installation
 
 ### 1) Add the package:
 
+```bash tab="bun"
+bun add -d @bkper/bkper-api-types
 ```
+
+```bash tab="npm"
 npm i -S @bkper/bkper-api-types
 ```
-or
+
+```bash tab="pnpm"
+pnpm add -D @bkper/bkper-api-types
 ```
+
+```bash tab="yarn"
 yarn add --dev @bkper/bkper-api-types
 ```
 
@@ -31,4 +39,3 @@ yarn add --dev @bkper/bkper-api-types
 ```
 
 [Learn more](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types) about **@types**, **typeRoots** and **types**
-

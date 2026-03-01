@@ -9,7 +9,7 @@ declare namespace bkper {
          */
         archived?: boolean;
         /**
-         * The current account balance, when querying transactions.
+         * The running balance of the account at the transaction date. Only present when the account is part of a transaction response filtered by account. NOT the current account balance. To get current balances, use the Balances endpoint: GET /books/{bookId}/balances
          */
         balance?: string;
         /**
@@ -29,7 +29,7 @@ declare namespace bkper {
          */
         groups?: Group[];
         /**
-         * Tell if the account has transaction posted
+         * Whether the account has any transactions posted
          */
         hasTransactionPosted?: boolean;
         /**
@@ -121,11 +121,11 @@ declare namespace bkper {
          */
         clientSecret?: string;
         /**
-         * Tell if this app is connectable by a user
+         * Whether this app is connectable by a user
          */
         connectable?: boolean;
         /**
-         * Tell if the code app is deprecated
+         * Whether the app is deprecated
          */
         deprecated?: boolean;
         /**
@@ -141,7 +141,7 @@ declare namespace bkper {
          */
         events?: ("FILE_CREATED" | "FILE_UPDATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
         /**
-         * File patters the App handles - wildcard accepted - E.g *.pdf *-bank.csv
+         * File patterns the App handles - wildcard accepted. E.g. *.pdf, *-bank.csv
          */
         filePatterns?: string[];
         /**
@@ -149,7 +149,7 @@ declare namespace bkper {
          */
         id?: string;
         /**
-         * Tell if this app is installable in a book
+         * Whether this app is installable in a book
          */
         installable?: boolean;
         /**
@@ -206,7 +206,7 @@ declare namespace bkper {
         ownerWebsite?: string;
         propertiesSchema?: AppPropertiesSchema;
         /**
-         * Tell if this app already published
+         * Whether this app is already published
          */
         published?: boolean;
         /**
@@ -218,7 +218,7 @@ declare namespace bkper {
          */
         readmeMd?: string;
         /**
-         * Tell if the code repository is private
+         * Whether the code repository is private
          */
         repoPrivate?: boolean;
         /**
@@ -347,7 +347,7 @@ declare namespace bkper {
          */
         autoPost?: boolean;
         /**
-         * The book closing date
+         * The book closing date, in ISO format yyyy-MM-dd. Transactions on or before this date are closed for the period
          */
         closingDate?: string;
         collection?: Collection;
@@ -364,7 +364,7 @@ declare namespace bkper {
          */
         decimalSeparator?: "DOT" | "COMMA";
         /**
-         * The number of fraction digits (decimal places) of the Book
+         * The number of fraction digits (decimal places) of the Book. E.g. 2 for ####.##, 4 for ####.####
          */
         fractionDigits?: number; // int32
         /**
@@ -376,11 +376,11 @@ declare namespace bkper {
          */
         id?: string;
         /**
-         * The last update date of the Book, in in milliseconds
+         * The last update date of the Book, in milliseconds
          */
         lastUpdateMs?: string;
         /**
-         * The book lock date
+         * The book lock date, in ISO format yyyy-MM-dd. Transactions on or before this date are locked
          */
         lockDate?: string;
         /**
@@ -414,7 +414,7 @@ declare namespace bkper {
             [name: string]: string;
         };
         /**
-         * The time zone of the Book
+         * The time zone of the Book, in IANA format. E.g. America/New_York, Europe/London
          */
         timeZone?: string;
         /**
@@ -511,6 +511,9 @@ declare namespace bkper {
          * The username of the Collection owner
          */
         ownerUsername?: string;
+        /**
+         * The permission the current user has in the Collection. E.g. OWNER, EDITOR, NONE
+         */
         permission?: "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
         /**
          * The last update timestamp, in milliseconds
@@ -672,19 +675,19 @@ declare namespace bkper {
          */
         createdAt?: string;
         /**
-         * Tell if the group is credit
+         * Whether the group has credit nature
          */
         credit?: boolean;
         /**
-         * Tell if the group is has any accounts
+         * Whether the group has any accounts
          */
         hasAccounts?: boolean;
         /**
-         * Tell if the group is has any children groups
+         * Whether the group has any children groups
          */
         hasGroups?: boolean;
         /**
-         * Tell if the group is hidden on transactions main menu
+         * Whether the group is hidden on the transactions main menu
          */
         hidden?: boolean;
         /**
@@ -692,11 +695,11 @@ declare namespace bkper {
          */
         id?: string;
         /**
-         * Tell if the group is locked by the Book owner
+         * Whether the group is locked by the Book owner
          */
         locked?: boolean;
         /**
-         * Tell if has mixed type of accounts
+         * Whether the group has mixed types of accounts
          */
         mixed?: boolean;
         /**
@@ -709,7 +712,7 @@ declare namespace bkper {
         normalizedName?: string;
         parent?: Group;
         /**
-         * Tell if the group is permanent
+         * Whether the group is permanent
          */
         permanent?: boolean;
         /**
@@ -718,6 +721,9 @@ declare namespace bkper {
         properties?: {
             [name: string]: string;
         };
+        /**
+         * The type of the accounts in the group. E.g. ASSET, LIABILITY, INCOMING, OUTGOING
+         */
         type?: "ASSET" | "LIABILITY" | "INCOMING" | "OUTGOING";
         /**
          * The last update timestamp, in milliseconds
@@ -852,7 +858,7 @@ declare namespace bkper {
          */
         amount?: string;
         /**
-         * Tell if the transaction is a checked
+         * Whether the transaction is checked
          */
         checked?: boolean;
         /**
@@ -882,7 +888,7 @@ declare namespace bkper {
          */
         description?: string;
         /**
-         * Tell if its a draft transaction
+         * Whether the transaction is a draft
          */
         draft?: boolean;
         /**
@@ -894,7 +900,7 @@ declare namespace bkper {
          */
         id?: string;
         /**
-         * Tell if the transaction is already posted on accounts, otherwise is a draft
+         * Whether the transaction is already posted on accounts, otherwise is a draft
          */
         posted?: boolean;
         /**
@@ -912,7 +918,7 @@ declare namespace bkper {
          */
         tags?: string[];
         /**
-         * Tell if transaction is trashed
+         * Whether the transaction is trashed
          */
         trashed?: boolean;
         /**
