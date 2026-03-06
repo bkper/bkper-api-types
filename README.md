@@ -12,12 +12,12 @@ More information at the [Bkper Developer Documentation](http://bkper.com/docs/#r
 
 ### 1) Add the package:
 
-```bash tab="bun"
-bun add -d @bkper/bkper-api-types
-```
-
 ```bash tab="npm"
 npm i -S @bkper/bkper-api-types
+```
+
+```bash tab="bun"
+bun add -d @bkper/bkper-api-types
 ```
 
 ```bash tab="pnpm"
