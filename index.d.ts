@@ -1227,6 +1227,17 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
+    namespace BkperV5DeleteAccountsBatch {
+        export interface BodyParameters {
+            AccountList: Parameters.AccountList;
+        }
+        namespace Parameters {
+            export type AccountList = bkper.AccountList;
+        }
+        namespace Responses {
+            export type $200 = bkper.AccountList;
+        }
+    }
     namespace BkperV5DeleteBook {
         namespace Responses {
             export type $200 = bkper.Book;
