@@ -105,8 +105,6 @@ declare namespace bkper {
          */
         name?: string;
     }
-    export interface Any {
-    }
     export interface App {
         /**
          * The API version of the event payload
@@ -603,7 +601,7 @@ declare namespace bkper {
         user?: User;
     }
     export interface EventData {
-        object?: Any;
+        object?: unknown;
         /**
          * The object previous attributes when updated
          */
@@ -1034,7 +1032,7 @@ declare namespace bkper {
     }
 }
 declare namespace Paths {
-    namespace BkperV5AddBooksToCollection {
+    namespace AddBooksToCollection {
         export interface BodyParameters {
             BookList: Parameters.BookList;
         }
@@ -1045,7 +1043,7 @@ declare namespace Paths {
             export type $200 = bkper.BookList;
         }
     }
-    namespace BkperV5AddCollaborator {
+    namespace AddCollaborator {
         export interface BodyParameters {
             Collaborator: Parameters.Collaborator;
         }
@@ -1056,7 +1054,7 @@ declare namespace Paths {
             export type $200 = bkper.Collaborator;
         }
     }
-    namespace BkperV5CheckTransaction {
+    namespace CheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1067,7 +1065,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5CheckTransactionsBatch {
+    namespace CheckTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1075,22 +1073,22 @@ declare namespace Paths {
             export type TransactionList = bkper.TransactionList;
         }
     }
-    namespace BkperV5CopyBook {
+    namespace CopyBook {
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5CountTransactions {
+    namespace CountTransactions {
         namespace Responses {
             export type $200 = bkper.Count;
         }
     }
-    namespace BkperV5CountTransactionsPosted {
+    namespace CountTransactionsPosted {
         namespace Responses {
             export type $200 = bkper.Counts;
         }
     }
-    namespace BkperV5CreateAccount {
+    namespace CreateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
         }
@@ -1101,7 +1099,7 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV5CreateAccountsBatch {
+    namespace CreateAccountsBatch {
         export interface BodyParameters {
             AccountList: Parameters.AccountList;
         }
@@ -1112,7 +1110,7 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5CreateApp {
+    namespace CreateApp {
         export interface BodyParameters {
             App: Parameters.App;
         }
@@ -1123,7 +1121,7 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV5CreateCollection {
+    namespace CreateCollection {
         export interface BodyParameters {
             Collection: Parameters.Collection;
         }
@@ -1134,7 +1132,7 @@ declare namespace Paths {
             export type $200 = bkper.Collection;
         }
     }
-    namespace BkperV5CreateConnection {
+    namespace CreateConnection {
         export interface BodyParameters {
             Connection: Parameters.Connection;
         }
@@ -1145,7 +1143,7 @@ declare namespace Paths {
             export type $200 = bkper.Connection;
         }
     }
-    namespace BkperV5CreateFile {
+    namespace CreateFile {
         export interface BodyParameters {
             File: Parameters.File;
         }
@@ -1156,7 +1154,7 @@ declare namespace Paths {
             export type $200 = bkper.File;
         }
     }
-    namespace BkperV5CreateGroup {
+    namespace CreateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
         }
@@ -1167,7 +1165,7 @@ declare namespace Paths {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV5CreateGroupsBatch {
+    namespace CreateGroupsBatch {
         export interface BodyParameters {
             GroupList: Parameters.GroupList;
         }
@@ -1178,7 +1176,7 @@ declare namespace Paths {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV5CreateIntegration {
+    namespace CreateIntegration {
         export interface BodyParameters {
             Integration: Parameters.Integration;
         }
@@ -1189,7 +1187,7 @@ declare namespace Paths {
             export type $200 = bkper.Integration;
         }
     }
-    namespace BkperV5CreateNewBook {
+    namespace CreateNewBook {
         export interface BodyParameters {
             Book: Parameters.Book;
         }
@@ -1200,7 +1198,7 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5CreateTransaction {
+    namespace CreateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1211,7 +1209,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5CreateTransactionsBatch {
+    namespace CreateTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1222,12 +1220,12 @@ declare namespace Paths {
             export type $200 = bkper.TransactionList;
         }
     }
-    namespace BkperV5DeleteAccount {
+    namespace DeleteAccount {
         namespace Responses {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV5DeleteAccountsBatch {
+    namespace DeleteAccountsBatch {
         export interface BodyParameters {
             AccountList: Parameters.AccountList;
         }
@@ -1238,192 +1236,192 @@ declare namespace Paths {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5DeleteBook {
+    namespace DeleteBook {
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5DeleteCollection {
+    namespace DeleteCollection {
         namespace Responses {
             export type $200 = bkper.BookList;
         }
     }
-    namespace BkperV5DeleteConnection {
+    namespace DeleteConnection {
         namespace Responses {
             export type $200 = bkper.Connection;
         }
     }
-    namespace BkperV5DeleteEventResponse {
+    namespace DeleteEventResponse {
         namespace Responses {
             export type $200 = bkper.Event;
         }
     }
-    namespace BkperV5DeleteGroup {
+    namespace DeleteGroup {
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV5DeleteIntegration {
+    namespace DeleteIntegration {
         namespace Responses {
             export type $200 = bkper.Integration;
         }
     }
-    namespace BkperV5DeleteQuery {
+    namespace DeleteQuery {
         namespace Responses {
             export type $200 = bkper.Query;
         }
     }
-    namespace BkperV5GetAccount {
+    namespace GetAccount {
         namespace Responses {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV5GetApp {
+    namespace GetApp {
         namespace Responses {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV5GetBalances {
+    namespace GetBalances {
         namespace Responses {
             export type $200 = bkper.Balances;
         }
     }
-    namespace BkperV5GetBilling {
+    namespace GetBilling {
         namespace Responses {
             export type $200 = bkper.Billing;
         }
     }
-    namespace BkperV5GetBillingCheckout {
+    namespace GetBillingCheckout {
         namespace Responses {
             export type $200 = bkper.Url;
         }
     }
-    namespace BkperV5GetBillingPortal {
+    namespace GetBillingPortal {
         namespace Responses {
             export type $200 = bkper.Url;
         }
     }
-    namespace BkperV5GetBook {
+    namespace GetBook {
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5GetBookEventsBacklog {
+    namespace GetBookEventsBacklog {
         namespace Responses {
             export type $200 = bkper.Backlog;
         }
     }
-    namespace BkperV5GetConnection {
+    namespace GetConnection {
         namespace Responses {
             export type $200 = bkper.Connection;
         }
     }
-    namespace BkperV5GetFile {
+    namespace GetFile {
         namespace Responses {
             export type $200 = bkper.File;
         }
     }
-    namespace BkperV5GetGroup {
+    namespace GetGroup {
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV5GetTransaction {
+    namespace GetTransaction {
         namespace Responses {
             export type $200 = bkper.Transaction;
         }
     }
-    namespace BkperV5GetUser {
+    namespace GetUser {
         namespace Responses {
             export type $200 = bkper.User;
         }
     }
-    namespace BkperV5ListAccountGroups {
+    namespace ListAccountGroups {
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV5ListAccounts {
+    namespace ListAccounts {
         namespace Responses {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5ListApps {
+    namespace ListApps {
         namespace Responses {
             export type $200 = bkper.AppList;
         }
     }
-    namespace BkperV5ListBillingCounts {
+    namespace ListBillingCounts {
         namespace Responses {
             export type $200 = bkper.Counts;
         }
     }
-    namespace BkperV5ListBookApps {
+    namespace ListBookApps {
         namespace Responses {
             export type $200 = bkper.AppList;
         }
     }
-    namespace BkperV5ListBooks {
+    namespace ListBooks {
         namespace Responses {
             export type $200 = bkper.BookList;
         }
     }
-    namespace BkperV5ListCollaborators {
+    namespace ListCollaborators {
         namespace Responses {
             export type $200 = /* An ordered list of Collaborator */ bkper.CollaboratorPayloadCollection;
         }
     }
-    namespace BkperV5ListCollections {
+    namespace ListCollections {
         namespace Responses {
             export type $200 = bkper.CollectionList;
         }
     }
-    namespace BkperV5ListConnectionIntegrations {
+    namespace ListConnectionIntegrations {
         namespace Responses {
             export type $200 = bkper.IntegrationList;
         }
     }
-    namespace BkperV5ListConnections {
+    namespace ListConnections {
         namespace Responses {
             export type $200 = bkper.ConnectionList;
         }
     }
-    namespace BkperV5ListEvents {
+    namespace ListEvents {
         namespace Responses {
             export type $200 = bkper.EventList;
         }
     }
-    namespace BkperV5ListGroupAccounts {
+    namespace ListGroupAccounts {
         namespace Responses {
             export type $200 = bkper.AccountList;
         }
     }
-    namespace BkperV5ListGroups {
+    namespace ListGroups {
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
-    namespace BkperV5ListIntegrations {
+    namespace ListIntegrations {
         namespace Responses {
             export type $200 = bkper.IntegrationList;
         }
     }
-    namespace BkperV5ListQueries {
+    namespace ListQueries {
         namespace Responses {
             export type $200 = bkper.QueryList;
         }
     }
-    namespace BkperV5ListTemplates {
+    namespace ListTemplates {
         namespace Responses {
             export type $200 = bkper.TemplateList;
         }
     }
-    namespace BkperV5ListTransactions {
+    namespace ListTransactions {
         namespace Responses {
             export type $200 = bkper.TransactionList;
         }
     }
-    namespace BkperV5PostTransaction {
+    namespace PostTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1434,7 +1432,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5PostTransactionsBatch {
+    namespace PostTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1442,7 +1440,7 @@ declare namespace Paths {
             export type TransactionList = bkper.TransactionList;
         }
     }
-    namespace BkperV5RemoveBooksFromCollection {
+    namespace RemoveBooksFromCollection {
         export interface BodyParameters {
             BookList: Parameters.BookList;
         }
@@ -1453,12 +1451,12 @@ declare namespace Paths {
             export type $200 = bkper.BookList;
         }
     }
-    namespace BkperV5RemoveCollaborator {
+    namespace RemoveCollaborator {
         namespace Responses {
             export type $200 = bkper.Collaborator;
         }
     }
-    namespace BkperV5RemoveTransaction {
+    namespace RemoveTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1469,12 +1467,12 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5ReplayEventResponse {
+    namespace ReplayEventResponse {
         namespace Responses {
             export type $200 = bkper.Event;
         }
     }
-    namespace BkperV5ReplayEvents {
+    namespace ReplayEvents {
         export interface BodyParameters {
             EventList: Parameters.EventList;
         }
@@ -1482,7 +1480,7 @@ declare namespace Paths {
             export type EventList = bkper.EventList;
         }
     }
-    namespace BkperV5RestoreTransaction {
+    namespace RestoreTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1493,7 +1491,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5SaveQuery {
+    namespace SaveQuery {
         export interface BodyParameters {
             Query: Parameters.Query;
         }
@@ -1504,7 +1502,7 @@ declare namespace Paths {
             export type $200 = bkper.Query;
         }
     }
-    namespace BkperV5TrashTransaction {
+    namespace TrashTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1515,7 +1513,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5TrashTransactionsBatch {
+    namespace TrashTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1523,7 +1521,7 @@ declare namespace Paths {
             export type TransactionList = bkper.TransactionList;
         }
     }
-    namespace BkperV5UncheckTransaction {
+    namespace UncheckTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1534,7 +1532,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5UncheckTransactionsBatch {
+    namespace UncheckTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1542,7 +1540,7 @@ declare namespace Paths {
             export type TransactionList = bkper.TransactionList;
         }
     }
-    namespace BkperV5UntrashTransaction {
+    namespace UntrashTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1553,7 +1551,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5UntrashTransactionsBatch {
+    namespace UntrashTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
@@ -1561,7 +1559,7 @@ declare namespace Paths {
             export type TransactionList = bkper.TransactionList;
         }
     }
-    namespace BkperV5UpdateAccount {
+    namespace UpdateAccount {
         export interface BodyParameters {
             Account: Parameters.Account;
         }
@@ -1572,7 +1570,18 @@ declare namespace Paths {
             export type $200 = bkper.Account;
         }
     }
-    namespace BkperV5UpdateApp {
+    namespace UpdateAccountsBatch {
+        export interface BodyParameters {
+            AccountList: Parameters.AccountList;
+        }
+        namespace Parameters {
+            export type AccountList = bkper.AccountList;
+        }
+        namespace Responses {
+            export type $200 = bkper.AccountList;
+        }
+    }
+    namespace UpdateApp {
         export interface BodyParameters {
             App: Parameters.App;
         }
@@ -1583,7 +1592,7 @@ declare namespace Paths {
             export type $200 = bkper.App;
         }
     }
-    namespace BkperV5UpdateBook {
+    namespace UpdateBook {
         export interface BodyParameters {
             Book: Parameters.Book;
         }
@@ -1594,7 +1603,7 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5UpdateBookDeprecated {
+    namespace UpdateBookDeprecated {
         export interface BodyParameters {
             Book: Parameters.Book;
         }
@@ -1605,7 +1614,7 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
-    namespace BkperV5UpdateCollection {
+    namespace UpdateCollection {
         export interface BodyParameters {
             Collection: Parameters.Collection;
         }
@@ -1616,7 +1625,7 @@ declare namespace Paths {
             export type $200 = bkper.Collection;
         }
     }
-    namespace BkperV5UpdateConnection {
+    namespace UpdateConnection {
         export interface BodyParameters {
             Connection: Parameters.Connection;
         }
@@ -1627,7 +1636,7 @@ declare namespace Paths {
             export type $200 = bkper.Connection;
         }
     }
-    namespace BkperV5UpdateFile {
+    namespace UpdateFile {
         export interface BodyParameters {
             File: Parameters.File;
         }
@@ -1638,7 +1647,7 @@ declare namespace Paths {
             export type $200 = bkper.File;
         }
     }
-    namespace BkperV5UpdateGroup {
+    namespace UpdateGroup {
         export interface BodyParameters {
             Group: Parameters.Group;
         }
@@ -1649,7 +1658,7 @@ declare namespace Paths {
             export type $200 = bkper.Group;
         }
     }
-    namespace BkperV5UpdateIntegration {
+    namespace UpdateIntegration {
         export interface BodyParameters {
             Integration: Parameters.Integration;
         }
@@ -1660,7 +1669,7 @@ declare namespace Paths {
             export type $200 = bkper.Integration;
         }
     }
-    namespace BkperV5UpdateQuery {
+    namespace UpdateQuery {
         export interface BodyParameters {
             Query: Parameters.Query;
         }
@@ -1671,7 +1680,7 @@ declare namespace Paths {
             export type $200 = bkper.Query;
         }
     }
-    namespace BkperV5UpdateTransaction {
+    namespace UpdateTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
         }
@@ -1682,7 +1691,7 @@ declare namespace Paths {
             export type $200 = bkper.TransactionOperation;
         }
     }
-    namespace BkperV5UpdateTransactionsBatch {
+    namespace UpdateTransactionsBatch {
         export interface BodyParameters {
             TransactionList: Parameters.TransactionList;
         }
