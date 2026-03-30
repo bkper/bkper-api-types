@@ -382,6 +382,10 @@ declare namespace bkper {
          */
         lockDate?: string;
         /**
+         * The logo URL of the book owner's custom domain
+         */
+        logoUrl?: string;
+        /**
          * The name of the Book
          */
         name?: string;
