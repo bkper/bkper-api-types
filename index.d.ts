@@ -1425,6 +1425,17 @@ declare namespace Paths {
             export type $200 = bkper.TransactionList;
         }
     }
+    namespace MergeTransactions {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            export type TransactionList = bkper.TransactionList;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionOperation;
+        }
+    }
     namespace PostTransaction {
         export interface BodyParameters {
             Transaction: Parameters.Transaction;
