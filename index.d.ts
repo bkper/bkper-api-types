@@ -159,13 +159,9 @@ declare namespace bkper {
          */
         logoUrlDark?: string;
         /**
-         * The menu popup window height
+         * How the app menu opens. Default to SIDEBAR
          */
-        menuPopupHeight?: string;
-        /**
-         * The menu popup window width
-         */
-        menuPopupWidth?: string;
+        menuOpenMode?: "SIDEBAR" | "EXPANDED" | "NEW_TAB";
         /**
          * The contex menu text - default to the App name
          */
