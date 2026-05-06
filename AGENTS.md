@@ -31,13 +31,13 @@ These rules are mandatory for coding agents working on this repository.
 
 Releases are published by GitHub Actions (Trusted Publisher with OIDC), not from local machines.
 
-- Work directly on `main`. This is a simple project with no PR flow.
+- Work directly on `master`. This is a simple project with no PR flow.
 - Run `bun run build` to regenerate types when needed.
-- When ready to release from a clean, up-to-date `main`, run one of:
+- When ready to release from a clean, up-to-date `master`, run one of:
   - `bun run release:patch`
   - `bun run release:minor`
   - `bun run release:major`
-- Push the resulting commit and tag with `git push origin main --follow-tags`
+- Push the resulting commit and tag with `git push origin master --follow-tags`
 - CI publishes only from version tags matching `v*.*.*`
 
 ### Publishing policy

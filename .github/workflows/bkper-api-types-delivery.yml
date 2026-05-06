@@ -2,12 +2,12 @@ name: bkper-api-types-delivery
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     tags: ['v*.*.*']
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
@@ -77,10 +77,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          git fetch origin main --force
+          git fetch origin master --force
 
-          if ! git merge-base --is-ancestor "$TAG_COMMIT_SHA" origin/main; then
-            echo "Tagged commit $TAG_COMMIT_SHA is not reachable from origin/main"
+          if ! git merge-base --is-ancestor "$TAG_COMMIT_SHA" origin/master; then
+            echo "Tagged commit $TAG_COMMIT_SHA is not reachable from origin/master"
             exit 1
           fi
 
