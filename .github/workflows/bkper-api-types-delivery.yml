@@ -1,0 +1,110 @@
+name: bkper-api-types-delivery
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: release-${{ github.ref_name }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Validate release tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          PACKAGE_VERSION="$(node -p 'JSON.parse(require("fs").readFileSync("package.json", "utf8")).version')"
+          EXPECTED_TAG="v${PACKAGE_VERSION}"
+
+          if [[ "$RELEASE_TAG" != "$EXPECTED_TAG" ]]; then
+            echo "Release tag $RELEASE_TAG does not match package.json version $EXPECTED_TAG"
+            exit 1
+          fi
+
+      - name: Ensure tagged commit is on main
+        env:
+          TAG_COMMIT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          git fetch origin main --force
+
+          if ! git merge-base --is-ancestor "$TAG_COMMIT_SHA" origin/main; then
+            echo "Tagged commit $TAG_COMMIT_SHA is not reachable from origin/main"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - name: Upgrade npm
+        run: npm install -g npm@11.11.0
+
+      - name: Print tool versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Publish to npm (Trusted Publishers)
+        run: npm publish --access public --provenance --verbose
+
+      - name: Notify Slack
+        if: always()
+        uses: pioug/le-slack-message@v1.0.0
+        with:
+          ACTION_NAME: release ${{ github.ref_name }}
+          JOB: ${{ toJson(job) }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

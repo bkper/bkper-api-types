@@ -159,6 +159,10 @@ declare namespace bkper {
          */
         logoUrlDark?: string;
         /**
+         * How the app menu opens. Default to SIDEBAR
+         */
+        menuOpenMode?: "SIDEBAR" | "EXPANDED" | "NEW_TAB";
+        /**
          * The menu popup window height
          */
         menuPopupHeight?: string;
@@ -605,7 +609,9 @@ declare namespace bkper {
         user?: User;
     }
     export interface EventData {
-        object?: unknown;
+        object?: {
+            [key: string]: any;
+        };
         /**
          * The object previous attributes when updated
          */
@@ -1042,6 +1048,10 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type BookList = bkper.BookList;
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
         }
         namespace Responses {
             export type $200 = bkper.BookList;
@@ -1052,10 +1062,35 @@ declare namespace Paths {
             Collaborator: Parameters.Collaborator;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Collaborator = bkper.Collaborator;
+            /**
+             * Optional message to send with the invitation email
+             */
+            export type Message = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            message?: /* Optional message to send with the invitation email */ Parameters.Message;
         }
         namespace Responses {
             export type $200 = bkper.Collaborator;
+        }
+    }
+    namespace AuditBook {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
     }
     namespace CheckTransaction {
@@ -1063,7 +1098,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1074,20 +1116,95 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
     }
     namespace CopyBook {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Whether to copy transactions
+             */
+            export type CopyTransactions = boolean;
+            /**
+             * Start date for copying transactions (YYYYMMDD format)
+             */
+            export type FromDate = number; // int32
+            /**
+             * Name for the copied book
+             */
+            export type Name = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            name?: /* Name for the copied book */ Parameters.Name;
+            copyTransactions?: /* Whether to copy transactions */ Parameters.CopyTransactions;
+            fromDate?: /* Start date for copying transactions (YYYYMMDD format) */ Parameters.FromDate /* int32 */;
+        }
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
     namespace CountTransactions {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The query to filter transactions
+             */
+            export type Query = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            query?: /* The query to filter transactions */ Parameters.Query;
+        }
         namespace Responses {
             export type $200 = bkper.Count;
         }
     }
     namespace CountTransactionsPosted {
+        namespace Parameters {
+            /**
+             * After date, on yyyy-mm-dd format.
+             */
+            export type After = string; // date
+            /**
+             * Before date, on yyyy-mm-dd format.
+             */
+            export type Before = string; // date
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Periodicity DAILY or MONTHLY
+             */
+            export type Periodicity = "DAILY" | "MONTHLY" | "YEARLY";
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            after: /* After date, on yyyy-mm-dd format. */ Parameters.After /* date */;
+            before: /* Before date, on yyyy-mm-dd format. */ Parameters.Before /* date */;
+            periodicity: /* Periodicity DAILY or MONTHLY */ Parameters.Periodicity;
+        }
         namespace Responses {
             export type $200 = bkper.Counts;
         }
@@ -1098,6 +1215,13 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type Account = bkper.Account;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Account;
@@ -1109,6 +1233,13 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type AccountList = bkper.AccountList;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
@@ -1152,7 +1283,14 @@ declare namespace Paths {
             File: Parameters.File;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type File = bkper.File;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.File;
@@ -1163,7 +1301,14 @@ declare namespace Paths {
             Group: Parameters.Group;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Group = bkper.Group;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Group;
@@ -1174,7 +1319,14 @@ declare namespace Paths {
             GroupList: Parameters.GroupList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type GroupList = bkper.GroupList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.GroupList;
@@ -1185,7 +1337,14 @@ declare namespace Paths {
             Integration: Parameters.Integration;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Integration = bkper.Integration;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Integration;
@@ -1197,6 +1356,10 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type Book = bkper.Book;
+            export type Name = string;
+        }
+        export interface QueryParameters {
+            name?: Parameters.Name;
         }
         namespace Responses {
             export type $200 = bkper.Book;
@@ -1207,7 +1370,21 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Optional time zone for parsing dates when recording from different book time zone
+             */
+            export type TimeZone = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            timeZone?: /* Optional time zone for parsing dates when recording from different book time zone */ Parameters.TimeZone;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1218,13 +1395,41 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Optional time zone for parsing dates when recording from different book time zone
+             */
+            export type TimeZone = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            timeZone?: /* Optional time zone for parsing dates when recording from different book time zone */ Parameters.TimeZone;
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
         }
     }
     namespace DeleteAccount {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The account id
+             */
+            export type Id = number; // int64
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The account id */ Parameters.Id /* int64 */;
+        }
         namespace Responses {
             export type $200 = bkper.Account;
         }
@@ -1235,57 +1440,179 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type AccountList = bkper.AccountList;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
         }
     }
     namespace DeleteBook {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
     namespace DeleteCollection {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.BookList;
         }
     }
     namespace DeleteConnection {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Connection;
         }
     }
     namespace DeleteEventResponse {
+        namespace Parameters {
+            /**
+             * The agent id
+             */
+            export type AgentId = string;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The event id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The event id */ Parameters.Id;
+            agentId: /* The agent id */ Parameters.AgentId;
+        }
         namespace Responses {
             export type $200 = bkper.Event;
         }
     }
     namespace DeleteGroup {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The group id
+             */
+            export type Id = number; // int64
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The group id */ Parameters.Id /* int64 */;
+        }
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
     namespace DeleteIntegration {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            export type Id = number; // int64
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: Parameters.Id /* int64 */;
+        }
         namespace Responses {
             export type $200 = bkper.Integration;
         }
     }
     namespace DeleteQuery {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The query id
+             */
+            export type Id = number; // int64
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The query id */ Parameters.Id /* int64 */;
+        }
         namespace Responses {
             export type $200 = bkper.Query;
         }
     }
     namespace GetAccount {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The account id or name
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The account id or name */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Account;
         }
     }
     namespace GetApp {
+        namespace Parameters {
+            export type AgentId = string;
+        }
+        export interface PathParameters {
+            agentId: Parameters.AgentId;
+        }
         namespace Responses {
             export type $200 = bkper.App;
         }
     }
     namespace GetBalances {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The query to filter balances
+             */
+            export type Query = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            query: /* The query to filter balances */ Parameters.Query;
+        }
         namespace Responses {
             export type $200 = bkper.Balances;
         }
@@ -1296,41 +1623,134 @@ declare namespace Paths {
         }
     }
     namespace GetBillingCheckout {
+        namespace Parameters {
+            export type CancelUrl = string;
+            export type Cycle = string;
+            export type Plan = string;
+            export type SuccessUrl = string;
+        }
+        export interface QueryParameters {
+            plan: Parameters.Plan;
+            cycle?: Parameters.Cycle;
+            successUrl: Parameters.SuccessUrl;
+            cancelUrl: Parameters.CancelUrl;
+        }
         namespace Responses {
             export type $200 = bkper.Url;
         }
     }
     namespace GetBillingPortal {
+        namespace Parameters {
+            export type ReturnUrl = string;
+        }
+        export interface QueryParameters {
+            returnUrl: Parameters.ReturnUrl;
+        }
         namespace Responses {
             export type $200 = bkper.Url;
         }
     }
     namespace GetBook {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Optionally load accounts and groups
+             */
+            export type LoadAccounts = boolean;
+            /**
+             * Optionally load groups
+             */
+            export type LoadGroups = boolean;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            loadAccounts?: /* Optionally load accounts and groups */ Parameters.LoadAccounts;
+            loadGroups?: /* Optionally load groups */ Parameters.LoadGroups;
+        }
         namespace Responses {
             export type $200 = bkper.Book;
         }
     }
     namespace GetBookEventsBacklog {
+        namespace Parameters {
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.Backlog;
         }
     }
     namespace GetConnection {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Connection;
         }
     }
     namespace GetFile {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The file id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The file id */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.File;
         }
     }
     namespace GetGroup {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The group id or name
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The group id or name */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Group;
         }
     }
     namespace GetTransaction {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The transaction id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The transaction id */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Transaction;
         }
@@ -1341,11 +1761,34 @@ declare namespace Paths {
         }
     }
     namespace ListAccountGroups {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The account id or name
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The account id or name */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
     namespace ListAccounts {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.AccountList;
         }
@@ -1361,16 +1804,43 @@ declare namespace Paths {
         }
     }
     namespace ListBookApps {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.AppList;
         }
     }
     namespace ListBooks {
+        namespace Parameters {
+            /**
+             * Optional search term to filter books
+             */
+            export type Query = string;
+        }
+        export interface QueryParameters {
+            query?: /* Optional search term to filter books */ Parameters.Query;
+        }
         namespace Responses {
             export type $200 = bkper.BookList;
         }
     }
     namespace ListCollaborators {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = /* An ordered list of Collaborator */ bkper.CollaboratorPayloadCollection;
         }
@@ -1381,6 +1851,12 @@ declare namespace Paths {
         }
     }
     namespace ListConnectionIntegrations {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.IntegrationList;
         }
@@ -1391,26 +1867,103 @@ declare namespace Paths {
         }
     }
     namespace ListEvents {
+        namespace Parameters {
+            /**
+             * After date and time, on RFC3339 format
+             */
+            export type After = string; // date-time
+            /**
+             * Before date and time, on RFC3339 format
+             */
+            export type Before = string; // date-time
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Filter by error
+             */
+            export type Error = boolean;
+            /**
+             * The dataset limit. Useful for pagination
+             */
+            export type Limit = number; // int32
+            /**
+             * The resourceId associated
+             */
+            export type ResoureId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            after?: /* After date and time, on RFC3339 format */ Parameters.After /* date-time */;
+            before?: /* Before date and time, on RFC3339 format */ Parameters.Before /* date-time */;
+            error?: /* Filter by error */ Parameters.Error;
+            resoureId?: /* The resourceId associated */ Parameters.ResoureId;
+            limit?: /* The dataset limit. Useful for pagination */ Parameters.Limit /* int32 */;
+        }
         namespace Responses {
             export type $200 = bkper.EventList;
         }
     }
     namespace ListGroupAccounts {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The group id or name
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The group id or name */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.AccountList;
         }
     }
     namespace ListGroups {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.GroupList;
         }
     }
     namespace ListIntegrations {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.IntegrationList;
         }
     }
     namespace ListQueries {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
         namespace Responses {
             export type $200 = bkper.QueryList;
         }
@@ -1421,6 +1974,27 @@ declare namespace Paths {
         }
     }
     namespace ListTransactions {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The dataset limit. Useful for pagination
+             */
+            export type Limit = number; // int32
+            /**
+             * The query to filter transactions
+             */
+            export type Query = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            query?: /* The query to filter transactions */ Parameters.Query;
+            limit?: /* The dataset limit. Useful for pagination */ Parameters.Limit /* int32 */;
+        }
         namespace Responses {
             export type $200 = bkper.TransactionList;
         }
@@ -1430,7 +2004,14 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1441,7 +2022,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1452,7 +2040,14 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
     }
     namespace RemoveBooksFromCollection {
@@ -1461,12 +2056,30 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type BookList = bkper.BookList;
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
         }
         namespace Responses {
             export type $200 = bkper.BookList;
         }
     }
     namespace RemoveCollaborator {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The collaborator id or email
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The collaborator id or email */ Parameters.Id;
+        }
         namespace Responses {
             export type $200 = bkper.Collaborator;
         }
@@ -1476,13 +2089,39 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
         }
     }
     namespace ReplayEventResponse {
+        namespace Parameters {
+            /**
+             * The agent id
+             */
+            export type AgentId = string;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The event id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The event id */ Parameters.Id;
+            agentId: /* The agent id */ Parameters.AgentId;
+        }
         namespace Responses {
             export type $200 = bkper.Event;
         }
@@ -1492,7 +2131,21 @@ declare namespace Paths {
             EventList: Parameters.EventList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * Replay errors only
+             */
+            export type ErrorsOnly = boolean;
             export type EventList = bkper.EventList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            errorsOnly?: /* Replay errors only */ Parameters.ErrorsOnly;
         }
     }
     namespace RestoreTransaction {
@@ -1500,7 +2153,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1511,7 +2171,14 @@ declare namespace Paths {
             Query: Parameters.Query;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Query = bkper.Query;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Query;
@@ -1522,7 +2189,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1533,7 +2207,21 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+            /**
+             * True to also trash checked transactions
+             */
+            export type TrashChecked = boolean;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            trashChecked?: /* True to also trash checked transactions */ Parameters.TrashChecked;
         }
     }
     namespace UncheckTransaction {
@@ -1541,7 +2229,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1552,7 +2247,14 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
     }
     namespace UntrashTransaction {
@@ -1560,7 +2262,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1571,7 +2280,14 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
     }
     namespace UpdateAccount {
@@ -1580,6 +2296,13 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type Account = bkper.Account;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Account;
@@ -1591,6 +2314,13 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type AccountList = bkper.AccountList;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
@@ -1624,6 +2354,13 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type Book = bkper.Book;
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Book;
@@ -1656,7 +2393,14 @@ declare namespace Paths {
             File: Parameters.File;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type File = bkper.File;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.File;
@@ -1667,7 +2411,14 @@ declare namespace Paths {
             Group: Parameters.Group;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Group = bkper.Group;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Group;
@@ -1678,7 +2429,14 @@ declare namespace Paths {
             Integration: Parameters.Integration;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Integration = bkper.Integration;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Integration;
@@ -1689,7 +2447,14 @@ declare namespace Paths {
             Query: Parameters.Query;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Query = bkper.Query;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.Query;
@@ -1700,7 +2465,14 @@ declare namespace Paths {
             Transaction: Parameters.Transaction;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type Transaction = bkper.Transaction;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
@@ -1711,7 +2483,21 @@ declare namespace Paths {
             TransactionList: Parameters.TransactionList;
         }
         namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
             export type TransactionList = bkper.TransactionList;
+            /**
+             * True to also update checked transactions
+             */
+            export type UpdateChecked = boolean;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            updateChecked?: /* True to also update checked transactions */ Parameters.UpdateChecked;
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
