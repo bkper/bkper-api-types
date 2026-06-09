@@ -163,11 +163,11 @@ declare namespace bkper {
          */
         menuOpenMode?: "SIDEBAR" | "EXPANDED" | "NEW_TAB";
         /**
-         * The menu popup window height
+         * Deprecated
          */
         menuPopupHeight?: string;
         /**
-         * The menu popup window width
+         * Deprecated
          */
         menuPopupWidth?: string;
         /**
@@ -672,6 +672,16 @@ declare namespace bkper {
          * The file serving url
          */
         url?: string;
+    }
+    export interface FileList {
+        /**
+         * The cursor, for pagination
+         */
+        cursor?: string;
+        /**
+         * List items
+         */
+        items?: File[];
     }
     export interface Group {
         /**
@@ -1905,6 +1915,27 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.EventList;
+        }
+    }
+    namespace ListFiles {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The dataset limit. Useful for pagination
+             */
+            export type Limit = number; // int32
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            limit?: /* The dataset limit. Useful for pagination */ Parameters.Limit /* int32 */;
+        }
+        namespace Responses {
+            export type $200 = bkper.FileList;
         }
     }
     namespace ListGroupAccounts {
