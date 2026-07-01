@@ -466,6 +466,10 @@ declare namespace bkper {
          */
         agentId?: string;
         /**
+         * The Collaborator public avatar url
+         */
+        avatarUrl?: string;
+        /**
          * The creation timestamp, in milliseconds
          */
         createdAt?: string;
