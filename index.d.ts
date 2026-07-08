@@ -578,6 +578,16 @@ declare namespace bkper {
         posted?: Count[];
         trashed?: Count[];
     }
+    export interface Domain {
+        /**
+         * The unique id of the domain
+         */
+        id?: string;
+        /**
+         * The domain name
+         */
+        name?: string;
+    }
     export interface Event {
         agent?: Agent;
         book?: Book;
@@ -997,6 +1007,7 @@ declare namespace bkper {
          * How many days left in trial
          */
         daysLeftInTrial?: number; // int32
+        domain?: Domain;
         /**
          * The user email
          */
