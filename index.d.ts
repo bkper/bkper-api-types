@@ -1917,6 +1917,10 @@ declare namespace Paths {
              * The resourceId associated
              */
             export type ResoureId = string;
+            /**
+             * Filter by event type
+             */
+            export type Type = "FILE_CREATED" | "FILE_UPDATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED";
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
@@ -1926,6 +1930,7 @@ declare namespace Paths {
             before?: /* Before date and time, on RFC3339 format */ Parameters.Before /* date-time */;
             error?: /* Filter by error */ Parameters.Error;
             resoureId?: /* The resourceId associated */ Parameters.ResoureId;
+            type?: /* Filter by event type */ Parameters.Type;
             limit?: /* The dataset limit. Useful for pagination */ Parameters.Limit /* int32 */;
         }
         namespace Responses {
