@@ -137,7 +137,7 @@ declare namespace bkper {
         /**
          * Event types the App listen to
          */
-        events?: ("FILE_CREATED" | "FILE_UPDATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
+        events?: ("FILE_CREATED" | "FILE_UPDATED" | "FILE_DELETED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED")[];
         /**
          * File patterns the App handles - wildcard accepted. E.g. *.pdf, *-bank.csv
          */
@@ -619,7 +619,7 @@ declare namespace bkper {
         /**
          * The type of the Event
          */
-        type?: "FILE_CREATED" | "FILE_UPDATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED";
+        type?: "FILE_CREATED" | "FILE_UPDATED" | "FILE_DELETED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED";
         user?: User;
     }
     export interface EventData {
@@ -1044,6 +1044,10 @@ declare namespace bkper {
          * The user plan
          */
         plan?: string;
+        /**
+         * The user plan billing cycle
+         */
+        planCycle?: "MONTHLY" | "YEARLY";
         /**
          * True if subscription payment is overdue
          */
@@ -1537,6 +1541,25 @@ declare namespace Paths {
             export type $200 = bkper.Event;
         }
     }
+    namespace DeleteFile {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The file id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The file id */ Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = bkper.File;
+        }
+    }
     namespace DeleteGroup {
         namespace Parameters {
             /**
@@ -1920,7 +1943,7 @@ declare namespace Paths {
             /**
              * Filter by event type
              */
-            export type Type = "FILE_CREATED" | "FILE_UPDATED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED";
+            export type Type = "FILE_CREATED" | "FILE_UPDATED" | "FILE_DELETED" | "TRANSACTION_CREATED" | "TRANSACTION_UPDATED" | "TRANSACTION_DELETED" | "TRANSACTION_POSTED" | "TRANSACTION_CHECKED" | "TRANSACTION_UNCHECKED" | "TRANSACTION_RESTORED" | "ACCOUNT_CREATED" | "ACCOUNT_UPDATED" | "ACCOUNT_DELETED" | "QUERY_CREATED" | "QUERY_UPDATED" | "QUERY_DELETED" | "GROUP_CREATED" | "GROUP_UPDATED" | "GROUP_DELETED" | "COMMENT_CREATED" | "COMMENT_DELETED" | "COLLABORATOR_ADDED" | "COLLABORATOR_UPDATED" | "COLLABORATOR_REMOVED" | "INTEGRATION_CREATED" | "INTEGRATION_UPDATED" | "INTEGRATION_DELETED" | "BOOK_CREATED" | "BOOK_AUDITED" | "BOOK_UPDATED" | "BOOK_DELETED";
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
