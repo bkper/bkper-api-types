@@ -1724,6 +1724,25 @@ declare namespace Paths {
             export type $200 = bkper.Book;
         }
     }
+    namespace GetBookAccessRequest {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * The Book access request id
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+            id: /* The Book access request id */ Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = bkper.Collaborator;
+        }
+    }
     namespace GetBookEventsBacklog {
         namespace Parameters {
             export type BookId = string;
@@ -2220,6 +2239,29 @@ declare namespace Paths {
         }
         export interface QueryParameters {
             errorsOnly?: /* Replay errors only */ Parameters.ErrorsOnly;
+        }
+    }
+    namespace RequestBookAccess {
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            /**
+             * An optional message to the Book owner
+             */
+            export type Message = string;
+            /**
+             * The permission requested in the Book
+             */
+            export type Permission = "OWNER" | "EDITOR" | "POSTER" | "RECORDER" | "VIEWER" | "NONE";
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        export interface QueryParameters {
+            permission: /* The permission requested in the Book */ Parameters.Permission;
+            message?: /* An optional message to the Book owner */ Parameters.Message;
         }
     }
     namespace RestoreTransaction {
