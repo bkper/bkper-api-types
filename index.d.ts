@@ -105,6 +105,26 @@ declare namespace bkper {
          */
         name?: string;
     }
+    /**
+     * A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields.
+     */
+    export interface ApiError {
+        error?: {
+            errors?: {
+                domain?: string;
+                reason?: string;
+                message?: string;
+            }[];
+            code: number; // int32
+            message: string;
+        };
+        type?: string;
+        title?: string;
+        status?: number; // int32
+        detail?: string;
+        instance?: string;
+        code?: string;
+    }
     export interface App {
         /**
          * The API version of the event payload
@@ -1084,6 +1104,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.BookList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace AddCollaborator {
@@ -1109,6 +1130,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collaborator;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace AuditBook {
@@ -1120,6 +1142,9 @@ declare namespace Paths {
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CheckTransaction {
@@ -1138,6 +1163,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CheckTransactionsBatch {
@@ -1153,6 +1179,9 @@ declare namespace Paths {
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CopyBook {
@@ -1184,6 +1213,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CountTransactions {
@@ -1205,6 +1235,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Count;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CountTransactionsPosted {
@@ -1236,6 +1267,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Counts;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateAccount {
@@ -1254,6 +1286,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Account;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateAccountsBatch {
@@ -1272,6 +1305,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateApp {
@@ -1283,6 +1317,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.App;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateCollection {
@@ -1294,6 +1329,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateConnection {
@@ -1305,6 +1341,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Connection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateFile {
@@ -1323,6 +1360,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.File;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateGroup {
@@ -1341,6 +1379,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Group;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateGroupsBatch {
@@ -1359,6 +1398,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.GroupList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateIntegration {
@@ -1377,6 +1417,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Integration;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateNewBook {
@@ -1392,6 +1433,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateTransaction {
@@ -1417,6 +1459,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace CreateTransactionsBatch {
@@ -1442,6 +1485,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteAccount {
@@ -1461,6 +1505,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Account;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteAccountsBatch {
@@ -1479,6 +1524,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteBook {
@@ -1493,6 +1539,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteCollection {
@@ -1504,6 +1551,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.BookList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteConnection {
@@ -1515,6 +1563,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Connection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteEventResponse {
@@ -1539,6 +1588,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Event;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteFile {
@@ -1558,6 +1608,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.File;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteGroup {
@@ -1577,6 +1628,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Group;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteIntegration {
@@ -1593,6 +1645,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Integration;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace DeleteQuery {
@@ -1612,6 +1665,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Query;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetAccount {
@@ -1631,6 +1685,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Account;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetApp {
@@ -1642,6 +1697,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.App;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBalances {
@@ -1663,11 +1719,13 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Balances;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBilling {
         namespace Responses {
             export type $200 = bkper.Billing;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBillingCheckout {
@@ -1685,6 +1743,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Url;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBillingPortal {
@@ -1696,6 +1755,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Url;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBook {
@@ -1722,6 +1782,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBookAccessRequest {
@@ -1741,6 +1802,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collaborator;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetBookEventsBacklog {
@@ -1752,6 +1814,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Backlog;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetConnection {
@@ -1763,6 +1826,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Connection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetFile {
@@ -1782,6 +1846,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.File;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetGroup {
@@ -1801,6 +1866,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Group;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetTransaction {
@@ -1820,11 +1886,13 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Transaction;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace GetUser {
         namespace Responses {
             export type $200 = bkper.User;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListAccountGroups {
@@ -1844,6 +1912,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.GroupList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListAccounts {
@@ -1858,16 +1927,19 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListApps {
         namespace Responses {
             export type $200 = bkper.AppList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListBillingCounts {
         namespace Responses {
             export type $200 = bkper.Counts;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListBookApps {
@@ -1882,6 +1954,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AppList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListBooks {
@@ -1896,6 +1969,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.BookList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListCollaborators {
@@ -1910,11 +1984,13 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = /* An ordered list of Collaborator */ bkper.CollaboratorPayloadCollection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListCollections {
         namespace Responses {
             export type $200 = bkper.CollectionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListConnectionIntegrations {
@@ -1926,11 +2002,13 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.IntegrationList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListConnections {
         namespace Responses {
             export type $200 = bkper.ConnectionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListEvents {
@@ -1977,6 +2055,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.EventList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListFiles {
@@ -1998,6 +2077,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.FileList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListGroupAccounts {
@@ -2017,6 +2097,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListGroups {
@@ -2031,6 +2112,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.GroupList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListIntegrations {
@@ -2045,6 +2127,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.IntegrationList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListQueries {
@@ -2059,11 +2142,13 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.QueryList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListTemplates {
         namespace Responses {
             export type $200 = bkper.TemplateList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ListTransactions {
@@ -2090,6 +2175,26 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
+        }
+    }
+    namespace LoadTransactions {
+        export interface BodyParameters {
+            TransactionList: Parameters.TransactionList;
+        }
+        namespace Parameters {
+            /**
+             * The id of the book. Same bookId url param on Bkper
+             */
+            export type BookId = string;
+            export type TransactionList = bkper.TransactionList;
+        }
+        export interface PathParameters {
+            bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        namespace Responses {
+            export type $200 = bkper.TransactionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace MergeTransactions {
@@ -2108,6 +2213,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace PostTransaction {
@@ -2126,6 +2232,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace PostTransactionsBatch {
@@ -2142,6 +2249,9 @@ declare namespace Paths {
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
         }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
+        }
     }
     namespace RemoveBooksFromCollection {
         export interface BodyParameters {
@@ -2156,6 +2266,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.BookList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace RemoveCollaborator {
@@ -2175,6 +2286,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collaborator;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace RemoveTransaction {
@@ -2193,6 +2305,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ReplayEventResponse {
@@ -2217,6 +2330,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Event;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace ReplayEvents {
@@ -2239,6 +2353,9 @@ declare namespace Paths {
         }
         export interface QueryParameters {
             errorsOnly?: /* Replay errors only */ Parameters.ErrorsOnly;
+        }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace RequestBookAccess {
@@ -2263,6 +2380,9 @@ declare namespace Paths {
             permission: /* The permission requested in the Book */ Parameters.Permission;
             message?: /* An optional message to the Book owner */ Parameters.Message;
         }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
+        }
     }
     namespace RestoreTransaction {
         export interface BodyParameters {
@@ -2280,6 +2400,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace SaveQuery {
@@ -2298,6 +2419,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Query;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace TrashTransaction {
@@ -2316,6 +2438,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace TrashTransactionsBatch {
@@ -2339,6 +2462,9 @@ declare namespace Paths {
         export interface QueryParameters {
             trashChecked?: /* True to also trash checked transactions */ Parameters.TrashChecked;
         }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
+        }
     }
     namespace UncheckTransaction {
         export interface BodyParameters {
@@ -2356,6 +2482,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UncheckTransactionsBatch {
@@ -2371,6 +2498,9 @@ declare namespace Paths {
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UntrashTransaction {
@@ -2389,6 +2519,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UntrashTransactionsBatch {
@@ -2404,6 +2535,9 @@ declare namespace Paths {
         }
         export interface PathParameters {
             bookId: /* The id of the book. Same bookId url param on Bkper */ Parameters.BookId;
+        }
+        namespace Responses {
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateAccount {
@@ -2422,6 +2556,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Account;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateAccountsBatch {
@@ -2440,6 +2575,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.AccountList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateApp {
@@ -2451,6 +2587,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.App;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateBook {
@@ -2462,6 +2599,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateBookDeprecated {
@@ -2480,6 +2618,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Book;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateCollection {
@@ -2491,6 +2630,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Collection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateConnection {
@@ -2502,6 +2642,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Connection;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateFile {
@@ -2520,6 +2661,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.File;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateGroup {
@@ -2538,6 +2680,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Group;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateIntegration {
@@ -2556,6 +2699,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Integration;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateQuery {
@@ -2574,6 +2718,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.Query;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateTransaction {
@@ -2592,6 +2737,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionOperation;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
     namespace UpdateTransactionsBatch {
@@ -2617,6 +2763,7 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = bkper.TransactionList;
+            export type Default = /* A JSON error response. API operation errors use the nested `error` object. Public API proxy errors use the Problem Details fields. */ bkper.ApiError;
         }
     }
 }
