@@ -354,6 +354,14 @@ declare namespace bkper {
          * User-level total transactions this year
          */
         totalTransactionsThisYear?: number; // int64
+        /**
+         * Authoritative rounded-up rolling monthly average of posted transactions for the current plan
+         */
+        transactionsAverage?: number; // int64
+        /**
+         * Confirmed average monthly transaction capacity for the current plan
+         */
+        transactionsCapacity?: number; // int64
     }
     export interface Book {
         /**
