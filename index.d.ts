@@ -612,6 +612,10 @@ declare namespace bkper {
          */
         id?: string;
         /**
+         * The custom logo URL available under the user's current plan
+         */
+        logoUrl?: string;
+        /**
          * The domain name
          */
         name?: string;
