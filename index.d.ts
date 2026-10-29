@@ -1041,6 +1041,10 @@ declare namespace bkper {
         daysLeftInTrial?: number; // int32
         domain?: Domain;
         /**
+         * True if the user is the admin of their domain
+         */
+        domainAdmin?: boolean;
+        /**
          * The user email
          */
         email?: string;
