@@ -163,6 +163,10 @@ declare namespace bkper {
          */
         filePatterns?: string[];
         /**
+         * Whether the app is hidden from normal discovery. Does not change access, publication or installation eligibility.
+         */
+        hidden?: boolean;
+        /**
          * The unique agent id of the App - this can't be changed after created
          */
         id?: string;
