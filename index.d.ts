@@ -256,6 +256,10 @@ declare namespace bkper {
          */
         scopes?: string[];
         /**
+         * Maintainer-defined tags for app discovery
+         */
+        tags?: string[];
+        /**
          * The users (usernames and domain patterns) to enable the App while not yet published
          */
         users?: string;
